@@ -35,6 +35,7 @@ $stmt->execute(['productLine' => $product_line]);
      <script src="main.js"></script>
  </head>
  <body>
+ <p>Ändring</p>
      <br><br><br><br><br>
 
      <?php while ($row = $stmt->fetch()) {
