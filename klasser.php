@@ -25,46 +25,64 @@
 
 class Product {
 
-//properties:
+    //properties:
 
-$product = ['productCode' => '0', 'productName' => 'undefined', 'productLine' => 'undefined', 'productScale' => '1:10', 'productVendor' => 'undefined', 'productDescription' => 'undefined', 'quantityInStock' => 0, 'buyPrice' => 0.0, 'MSRP' => 0.0];
+    public $product = ['productCode' => '0', 'productName' => 'undefined', 'productLine' => 'undefined', 'productScale' => '1:10', 'productVendor' => 'undefined', 'productDescription' => 'undefined', 'quantityInStock' => 0, 'buyPrice' => 0.0, 'MSRP' => 0.0];
 
-//methods:
+    //methods:
 
-public function __construct(){}
-
-
-public function createProduct() {
-
-    $pdo = connect();
+    public function __construct(){}
 
 
-    $sql = 
+    public function createProduct() {
 
-}
-
-public function getProduct() {
-
-    $pdo = connect();
-
-    $sql = "SELECT * FROM products WHERE productCode = '" . $this->{"productCode"} . "'";
-
-$getProduct = $pdo->prepare($sql); // prepared statement
-$getProduct->execute(); // execute sql statment
-
-return $getProduct;
-
-}
+        $pdo = connect();
 
 
-public function updateProduct() {
+        $sql = 
 
-}
+    }
+
+    public function getProduct() {
+
+        $pdo = connect();
+
+        $sql = "SELECT * FROM products WHERE productCode = '" . $this->{"productCode"} . "'";
+
+        $getProduct = $pdo->prepare($sql); // prepared statement
+        $getProduct->execute(); // execute sql statment
+
+        return $getProduct;
+
+    }
 
 
-public function deleteProduct() {
+    public function updateProduct() {
+        $pdo = connect_admin();
+        
+        $sql = "UPDATE products
+        SET productName = '" . $this->{"productName"} . "', productLine = '" . $this->{"productLine"} . "', productScale = '" . $this->{"productScale"} . "', productVendor = '" . $this->{"productVendor"} . "', productDescription = '" . $this->{"productDescription"} . "', quantityInStock = '" . $this->{"quantityInStock"} . "', buyPrice = '" . $this->{"buyPrice"} . "', MSRP = '" . $this->{"MSRP"} . "'
+        WHERE productCode = '" . $this->{"productCode"} . "'"; // sql statementS
 
-}
+        $toSave = $pdo->prepare($sql); // prepared statement
+        $toSave->execute(); // execute sql statment
+
+        return TRUE;
+
+    }
+
+
+    public function deleteProduct() {
+        $pdo = connect();
+
+        $sql = "DELETE FROM products WHERE productCode = '" . $this->{"productCode"} . "'";
+
+        $deleteProducts = $pdo->prepare($sql); // prepared statement
+        $deleteProducts->execute(); // execute sql statment
+
+        return TRUE;
+
+    }
 
 
 
