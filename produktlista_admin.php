@@ -1,28 +1,17 @@
 <?php
 require_once "connect.php";
 
-// if (isset($_GET['productLine'])) {
-//     $productLine = filter_input(INPUT_GET, 'productLine', FILTER_SANITIZE_ENCODED);
-// } else {
-//     echo "Sorry, there is no such ProductLine";
-// }
+if (isset($_GET['productLine'])) {
+    $productLine = filter_input(INPUT_GET, 'productLine', FILTER_SANITIZE_STRING);
+} else {
+    echo "Sorry, there is no such ProductLine";
+}
 
-
-//$kat = $_GET['productLine'];
-$kat = filter_input(INPUT_GET, 'productLine', FILTER_SANITIZE_STRING);
-//$product_line = filter_input(INPUT_GET, 'productLine', FILTER_SANITIZE_STRING);
-$product_line = $kat;
 
 $stmt = $pdo->prepare("SELECT * FROM products WHERE productLine = :productLine;");
-$stmt->execute(['productLine' => $product_line]);
+$stmt->execute([':productLine' => $productLine]);
 
-// while ($row = $stmt->fetch()) {
-//     ?>
-     <!-- <a href="produktsida.php?product=<?php echo $row['productCode']; ?>"><?php echo $row['productName']; ?></a> - <?php echo $row['productLine']; ?><br> -->
-    <?php
-// }
-
-// ?>
+?>
 
 <!DOCTYPE <!DOCTYPE html>
  <html>
@@ -35,7 +24,7 @@ $stmt->execute(['productLine' => $product_line]);
      <script src="main.js"></script>
  </head>
  <body>
-     <br><br><br><br><br>
+     <br><br>
 
      <?php while ($row = $stmt->fetch()) {
     ?>

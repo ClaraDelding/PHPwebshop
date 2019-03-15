@@ -6,7 +6,7 @@ require_once "connect.php";
 if (isset($_GET['product'])) {
     $productCode = filter_input(INPUT_GET, 'product', FILTER_SANITIZE_ENCODED);
 } else {
-    $productCode = 'S12_1099';
+    echo 'Sorry, there is no such product';
 }
 
 $stmt = $pdo->prepare("SELECT * FROM classicmodels.products WHERE productCode = :product_code;");

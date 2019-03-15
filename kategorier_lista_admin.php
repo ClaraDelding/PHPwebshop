@@ -4,15 +4,6 @@ require_once "connect.php";
 
 $stmt = $pdo->query("SELECT productLine FROM productLines");
 
-foreach ($stmt as $kat) {
-       
-       echo "<p class='details'>";
-       ?>
-       <a href="produktlista_admin.php?productLine=<?php echo $kat['productLine']; ?>"><?php echo $kat['productLine']; ?></a><br>
-       <?php
-       echo "</p>";
-}
-
 
 ?>
 
@@ -27,29 +18,18 @@ foreach ($stmt as $kat) {
      <script src="main.js"></script>
  </head>
  <body>
-     <br><br><br><br><br>
+     <br><br>
 
-     <?php //while ($row = $stmt->fetch()) {
+     <?php
+         foreach ($stmt as $kat) {
+       
+            echo "<p class='details'>";
+            ?>
+            <a href="produktlista_admin.php?productLine=<?php echo $kat['productLine']; ?>"><?php echo $kat['productLine']; ?></a><br>
+            <?php
+            echo "</p>";
+     }
     ?>
-    <p> 
-    <!--<a href="produktsida.php?product=<?php echo $row['productCode']; ?>"><?php echo $row['productName']; ?></a> - <?php echo $row['productLine']; ?><br>
-    <p>
-    <?php
-    //} ?>
     
-    <?php 
-    //foreach ($stmt as $kat) {
-
-// for ($i = 0; $i < 1; $i++) {
-//     $kat;
-//     echo "<p class='details'>";
-//     //echo implode(", ", $kat);
-//     ?>
-//     <!-- <a href="produktlista.php?productLine=<?php echo $kat['productLine']; ?>"><?php echo $kat['productLine']; ?></a><br>
-//     <?php
-//     echo "</p>";
-// }
-// }
-    ?>
  </body>
  </html>
