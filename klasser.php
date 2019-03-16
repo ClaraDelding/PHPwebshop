@@ -1,27 +1,29 @@
 <?php
 
-    function connect() {
+    require_once "connect.php";
+
+    // function connect() {
     
-    $host = 'localhost';
-    $db   = 'classicmodels';
-    $user = 'root';
-    $pass = '';
-    $charset = 'utf8mb4';
+    // $host = 'localhost';
+    // $db   = 'classicmodels';
+    // $user = 'root';
+    // $pass = '';
+    // $charset = 'utf8mb4';
 
-    $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-    $options = [
-    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::ATTR_EMULATE_PREPARES   => false,
-    ];
+    // $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+    // $options = [
+    // PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    // PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    // PDO::ATTR_EMULATE_PREPARES   => false,
+    // ];
 
-    try {
-        $pdo = new PDO($dsn, $user, $pass, $options);
-    } catch (\PDOException $e) {
-        throw new \PDOException($e->getMessage(), (int)$e->getCode());
-        }
-    }
-}
+    // try {
+    //     $pdo = new PDO($dsn, $user, $pass, $options);
+    // } catch (\PDOException $e) {
+    //     throw new \PDOException($e->getMessage(), (int)$e->getCode());
+    //     }
+    // }
+
 
 class Product {
 
@@ -34,16 +36,16 @@ class Product {
     public function __construct(){}
 
 
-    public function createProduct() {
+    // public function createProduct() {
 
-        $pdo = connect();
+    //     $pdo = connect();
 
 
-        $sql = 
+    //     $sql = 
 
-    }
+    // }
 
-    public function getProduct() {
+    public function getProduct($pdo) {
 
         $pdo = connect();
 
@@ -58,14 +60,14 @@ class Product {
 
 
     public function updateProduct() {
-        $pdo = connect_admin();
+        $pdo = connect();
         
         $sql = "UPDATE products
         SET productName = '" . $this->{"productName"} . "', productLine = '" . $this->{"productLine"} . "', productScale = '" . $this->{"productScale"} . "', productVendor = '" . $this->{"productVendor"} . "', productDescription = '" . $this->{"productDescription"} . "', quantityInStock = '" . $this->{"quantityInStock"} . "', buyPrice = '" . $this->{"buyPrice"} . "', MSRP = '" . $this->{"MSRP"} . "'
-        WHERE productCode = '" . $this->{"productCode"} . "'"; // sql statementS
+        WHERE productCode = '" . $this->{"productCode"} . "'";
 
-        $toSave = $pdo->prepare($sql); // prepared statement
-        $toSave->execute(); // execute sql statment
+        $toSave = $pdo->prepare($sql);
+        $toSave->execute();
 
         return TRUE;
 
@@ -77,8 +79,8 @@ class Product {
 
         $sql = "DELETE FROM products WHERE productCode = '" . $this->{"productCode"} . "'";
 
-        $deleteProducts = $pdo->prepare($sql); // prepared statement
-        $deleteProducts->execute(); // execute sql statment
+        $deleteProducts = $pdo->prepare($sql);
+        $deleteProducts->execute();
 
         return TRUE;
 
@@ -91,11 +93,10 @@ class Product {
 
 }
 
-
 //-------------------------------------------------------------------------------------------
 
 
-class productLines
+// class productLines
 
 
 ?>
