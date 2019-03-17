@@ -1,24 +1,31 @@
 <?php
 
-function connect() {
+class Db {
+     protected function connect() {
 
     // Establish a connection to the database 
 
-     $host = 'localhost';
-     $db   = 'classicmodels';
-     $user = 'root';
-     $pass = '';
-     $charset = 'utf8mb4';
-
-     $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-
-     try {
-          $pdo = new PDO($dsn, $user, $pass);
-     } catch (\PDOException $e) {
-          throw new \PDOException($e->getMessage(), (int)$e->getCode());
-     }
+    $host = 'localhost';
+    $db   = 'classicmodels';
+    $user = 'root';
+    $pass = '';
+    $charset = 'utf8mb4';
+    
+    $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+    $options = [
+      PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+      PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+      PDO::ATTR_EMULATE_PREPARES   => false,
+    ];
+    
+    try {
+      $pdo = new PDO($dsn, $user, $pass, $options);
+    } catch (\PDOException $e) {
+      throw new \PDOException($e->getMessage(), (int)$e->getCode());
+    }
 
      return $pdo;
+}
 }
 
 // function productline_names($pdo) {

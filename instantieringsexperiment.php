@@ -1,18 +1,17 @@
 <?php
 require_once "funktioner.php";
 require_once "klasser.php";
-require_once "connect.php";
 
-$pdo = connect();
+if (isset($_GET['product'])) {
+    $productCode = filter_input(INPUT_GET, 'product', FILTER_SANITIZE_ENCODED);
+} else {
+    echo "Sorry, there is no such product";
+}
 
-$test = new Product;
-$test->productCode = "S12_1099";
-$result = $test->getProduct($pdo);
-
-$result->fetch();
-
-//var_dump($test);
-
+$test = new Product($_GET['product']);
+$test->getProduct();
+$test2 = new Product();
+echo $test2->productCode;
 ?>
 
 <!DOCTYPE html>
@@ -28,9 +27,9 @@ $result->fetch();
        <main>
        <article>
        <section class="product-details">
-               <h2><?php echo $test->$product['productName']; ?></h2>
-               <p><?php echo $test->$product['productDescription']; ?></p>
-              <h3><?php echo $test->$product['MSRP']; ?>kr</h3>
+               <h2><?php echo $test->productName; ?></h2>
+               <p><?php echo $test->productDescription; ?></p>
+              <h3><?php echo $test->MSRP; ?>kr</h3>
               <input type="submit" value="Lägg i varukorg">
        </section>
    </article>

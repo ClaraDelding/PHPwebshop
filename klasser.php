@@ -1,102 +1,96 @@
 <?php
+    //require_once "connect.php";
+    require_once "funktioner.php";
 
-    require_once "connect.php";
-
-    // function connect() {
-    
-    // $host = 'localhost';
-    // $db   = 'classicmodels';
-    // $user = 'root';
-    // $pass = '';
-    // $charset = 'utf8mb4';
-
-    // $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-    // $options = [
-    // PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-    // PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    // PDO::ATTR_EMULATE_PREPARES   => false,
-    // ];
-
-    // try {
-    //     $pdo = new PDO($dsn, $user, $pass, $options);
-    // } catch (\PDOException $e) {
-    //     throw new \PDOException($e->getMessage(), (int)$e->getCode());
-    //     }
-    // }
-
-
-class Product {
-
-    //properties:
-
-    public $product = ['productCode' => '0', 'productName' => 'undefined', 'productLine' => 'undefined', 'productScale' => '1:10', 'productVendor' => 'undefined', 'productDescription' => 'undefined', 'quantityInStock' => 0, 'buyPrice' => 0.0, 'MSRP' => 0.0];
-
-    //methods:
-
-    public function __construct(){}
-
-
-    // public function createProduct() {
-
-    //     $pdo = connect();
-
-
-    //     $sql = 
-
-    // }
-
-    public function getProduct($pdo) {
-
-        $pdo = connect();
-
-        $sql = "SELECT * FROM products WHERE productCode = '" . $this->{"productCode"} . "'";
-
-        $getProduct = $pdo->prepare($sql); // prepared statement
-        $getProduct->execute(); // execute sql statment
-
-        return $getProduct;
-
+class Product extends Db {
+    public $productCode;
+    public $productName;
+    public $productLine;
+    public $productScale;
+    public $productVendor;
+    public $productDescription;
+    public $quantityInStock;
+    public $buyPrice;
+    public $MSRP;
+ 
+    function __construct($productCode = ""){
+        if($productCode == "") {
+            $db = new Db;
+            $pdo = $db->connect();
+            $getMaxID = $pdo->prepare("SELECT MAX(productCode) FROM products");
+            $getMaxID->execute();
+            $result = ($getMaxID->fetchColumn(0));      
+            $this->productCode = substr($result, 0, 4).((int)substr($result, 4) + 1);
+        } else {
+            $this->productCode = $productCode;
+        }
     }
 
+    public function createProduct($productName, $productLine, $productScale, $productVendor, $productDescription, $quantityInStock, $buyPrice, $MSRP) { 
+        $this->productName = $productName;
+        $this->productLine = $productLine;
+        $this->productScale = $productScale;
+        $this->productVendor = $productVendor;
+        $this->productDescription = $productDescription;
+        $this->quantityInStock = $quantityInStock;
+        $this->buyPrice = $buyPrice;
+        $this->MSRP = $MSRP; 
+
+        $db = new Db;
+        $pdo = $db->connect();
+
+        $sql = "INSERT INTO products SET productCode ='" . $this->productCode . "', productName ='" . 
+        $productName . "', productLine ='" . $productLine . "', productScale ='" . $productScale . "', productVendor = '" . 
+        $productVendor . "', productDescription = '" . $productDescription . "', quantityInStock = '" . $quantityInStock . "',
+        buyPrice = '" . $buyPrice . "', MSRP = '" . $MSRP . "'";
+
+        $stmt = $pdo->prepare($sql); 
+        $stmt->execute();
+    }
+
+    public function getProduct() {
+        $db = new Db;
+        $pdo = $db->connect();
+
+        $sql = "SELECT * FROM products WHERE productCode = '" . $this->productCode . "'";
+
+        $getProduct = $pdo->prepare($sql); 
+        $getProduct->execute();
+        
+        $rows = $getProduct->fetchAll(PDO::FETCH_ASSOC);
+
+        $this->productName = $rows[0]["productName"];
+        $this->productLine = $rows[0]["productLine"];
+        $this->productScale = $rows[0]["productScale"];
+        $this->productVendor = $rows[0]["productVendor"];
+        $this->productDescription = $rows[0]["productDescription"];
+        $this->quantityInStock = $rows[0]["quantityInStock"];
+        $this->buyPrice = $rows[0]["buyPrice"];
+        $this->MSRP = $rows[0]["MSRP"];
+    }
 
     public function updateProduct() {
-        $pdo = connect();
-        
+        $db = new Db;
+        $pdo = $db->connect();
+
         $sql = "UPDATE products
-        SET productName = '" . $this->{"productName"} . "', productLine = '" . $this->{"productLine"} . "', productScale = '" . $this->{"productScale"} . "', productVendor = '" . $this->{"productVendor"} . "', productDescription = '" . $this->{"productDescription"} . "', quantityInStock = '" . $this->{"quantityInStock"} . "', buyPrice = '" . $this->{"buyPrice"} . "', MSRP = '" . $this->{"MSRP"} . "'
-        WHERE productCode = '" . $this->{"productCode"} . "'";
+        SET productName = '" . $this->{"productName"} . "', productLine = '" . $this->{"productLine"} . "', productScale = '" . 
+        $this->{"productScale"} . "', productVendor = '" . $this->{"productVendor"} . "', productDescription = '" . 
+        $this->{"productDescription"} . "', quantityInStock = '" . $this->{"quantityInStock"} . "', buyPrice = '" . 
+        $this->{"buyPrice"} . "', MSRP = '" . $this->{"MSRP"} . "'
+        WHERE productCode = '" . $this->productCode . "'";
 
         $toSave = $pdo->prepare($sql);
         $toSave->execute();
-
-        return TRUE;
-
     }
-
 
     public function deleteProduct() {
         $pdo = connect();
 
-        $sql = "DELETE FROM products WHERE productCode = '" . $this->{"productCode"} . "'";
+        $sql = "DELETE FROM products WHERE productCode = '" . $this->productCode . "'";
 
         $deleteProducts = $pdo->prepare($sql);
         $deleteProducts->execute();
-
-        return TRUE;
-
     }
-
-
-
-
-
-
 }
-
-//-------------------------------------------------------------------------------------------
-
-
-// class productLines
-
-
 ?>

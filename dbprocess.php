@@ -1,6 +1,7 @@
 <?php
 
 require_once "connect.php";
+require_once "klasser.php";
 
 //----------------------------SKAPA PRODUKT -------------------------------------//
 
@@ -17,13 +18,16 @@ if (isset($_POST['save'])) {
     $MSRP = $_POST['MSRP'];
 
     //Send values from $_POST-array through the variables and insert into proper column in table products to create new row.
+    $newProduct = new Product();
+    $newProduct->createProduct($_POST['productName'], $_POST['productLine'], $_POST['productScale'], $_POST['productVendor'], 
+    $_POST['productDescription'],$_POST['quantityInStock'], $_POST['buyPrice'], $_POST['MSRP']);
 
-    $sql = "INSERT INTO products SET productCode ='" . $productCode . "', productName ='" . $productName . "', productLine ='" . $productLine . "', productScale ='" . $productScale . "',
-    productVendor = '" . $productVendor . "', productDescription = '" . $productDescription . "', quantityInStock = '" . $quantityInStock . "',
-    buyPrice = '" . $buyPrice . "', MSRP = '" . $MSRP . "'";
+    // $sql = "INSERT INTO products SET productCode ='" . $productCode . "', productName ='" . $productName . "', productLine ='" . $productLine . "', productScale ='" . $productScale . "',
+    // productVendor = '" . $productVendor . "', productDescription = '" . $productDescription . "', quantityInStock = '" . $quantityInStock . "',
+    // buyPrice = '" . $buyPrice . "', MSRP = '" . $MSRP . "'";
 
-    $stmt = $pdo->prepare($sql); // create prepared statement that inserts values through variables to the specified columns
-    $stmt->execute(); // executes the insert
+    // $stmt = $pdo->prepare($sql); // create prepared statement that inserts values through variables to the specified columns
+    // $stmt->execute(); // executes the insert
 }
 
 

@@ -1,20 +1,9 @@
-<?php require_once "connect.php"; 
+<?php 
+require_once "funktioner.php";
+require_once "connect.php";
+require_once "klasser.php";
 
-
-
-
-//Generera nytt id till varje produkt som skapas
-
-$getId = $pdo->prepare("SELECT MAX(productCode) FROM products");
-        $getId->execute();
-        $result = ($getId->fetchColumn());      
-        $text =  substr($result, 0, 4);     
-        $int =  substr($result, 4);
-        $int += 1;
-        $nyttId = $text.$int;
-
-        //echo $nyttId;
-
+$newProduct = new Product();
 ?>
 
 <!DOCTYPE <!DOCTYPE html>
@@ -34,9 +23,9 @@ $getId = $pdo->prepare("SELECT MAX(productCode) FROM products");
 <form action="dbprocess.php" method="POST">
     <label>Product Code</label><br>
     <input type="text" name="productCode" readonly value="
-<?php
-    echo $nyttId;
-?>
+    <?php
+    echo $newProduct->productCode;
+    ?>
 
     "><br><br>
     <label>Product Name</label><br>
