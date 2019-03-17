@@ -31,7 +31,7 @@ $stmt->execute([':productLine' => $productLine]);
      <?php while ($row = $stmt->fetch()) {
     ?>
     <p> 
-    <a href="instantieringsexperiment.php?product=<?php echo $row['productCode']; ?>"><?php echo $row['productName']; ?></a> - <?php echo $row['productLine']; ?><br>
+    <a href="produktsida.php?product=<?php echo $row['productCode']; ?>"><?php echo $row['productName']; ?></a> - <?php echo $row['productLine']; ?><br>
     <p>
     <?php
     } 

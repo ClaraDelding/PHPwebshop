@@ -3,6 +3,11 @@
 require_once "connect.php";
 require_once "klasser.php";
 
+//-----------------------READ PRODUCT--------------------------------------------//
+
+
+
+
 //----------------------------SKAPA PRODUKT -------------------------------------//
 
 //If user pressed save-button, collect information from array $_POST and put inside variables

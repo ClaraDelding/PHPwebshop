@@ -46,6 +46,7 @@ class Product extends Db {
 
         $stmt = $pdo->prepare($sql); 
         $stmt->execute();
+        
     }
 
     public function getProduct() {
