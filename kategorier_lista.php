@@ -4,16 +4,6 @@ require_once "connect.php";
 
 $stmt = $pdo->query("SELECT productLine FROM productLines");
 
-foreach ($stmt as $kat) {
-       
-       echo "<p class='details'>";
-       //echo implode(", ", $kat);
-       ?>
-       <a href="produktlista.php?productLine=<?php echo $kat['productLine']; ?>"><?php echo $kat['productLine']; ?></a><br>
-       <?php
-       echo "</p>";
-}
-
 ?>
 
 <!DOCTYPE <!DOCTYPE html>
@@ -34,7 +24,7 @@ foreach ($stmt as $kat) {
        
             echo "<p class='details'>";
             ?>
-            <a href="produktlista_admin.php?productLine=<?php echo $kat['productLine']; ?>"><?php echo $kat['productLine']; ?></a><br>
+            <a href="instantieringsexperiment.php?productLine=<?php echo $kat['productLine']; ?>"><?php echo $kat['productLine']; ?></a><br>
             <?php
             echo "</p>";
      }

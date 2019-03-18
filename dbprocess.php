@@ -8,6 +8,8 @@ require_once "klasser.php";
 
 
 
+
+
 //----------------------------SKAPA PRODUKT -------------------------------------//
 
 //If user pressed save-button, collect information from array $_POST and put inside variables

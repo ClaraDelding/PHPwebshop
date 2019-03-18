@@ -46,7 +46,7 @@ class Product extends Db {
 
         $stmt = $pdo->prepare($sql); 
         $stmt->execute();
-        
+
     }
 
     public function getProduct() {
@@ -86,12 +86,30 @@ class Product extends Db {
     }
 
     public function deleteProduct() {
-        $pdo = connect();
+        $db = new Db;
+        $pdo = $db->connect();
 
         $sql = "DELETE FROM products WHERE productCode = '" . $this->productCode . "'";
 
         $deleteProducts = $pdo->prepare($sql);
         $deleteProducts->execute();
+    }
+
+    public function getProductsInLine() {
+        $db = new Db;
+        $pdo = $db->connect();
+
+        $sql = "SELECT * FROM products WHERE productLine = '" . $this->productLine . "'";
+
+        $getProductLine = $pdo->prepare($sql);
+        $getProductLine->execute();
+
+        $rows = $getProductLine->fetchAll(PDO::FETCH_ASSOC);
+
+        // $this->productLine = $rows[0]['productLine'];
+        // $this->textDescription = $rows[0]['textDescription'];
+        // $this->htmlDescription = $rows[0]['htmlDescription'];
+        // $this->image = $rows[0]["image"];
     }
 }
 ?>
