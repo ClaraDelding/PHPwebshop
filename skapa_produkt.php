@@ -2,7 +2,7 @@
 require_once "funktioner.php";
 require_once "connect.php";
 require_once "klasser.php";
-
+//skapa nytt objekt av Product för att kunna hämta productCode.
 $newProduct = new Product();
 ?>
 
@@ -19,12 +19,12 @@ $newProduct = new Product();
     <?php require_once "dbprocess.php" ?>
 
 <h1>Create new product</h1>
-    
+<!-- send form to dbprocess for query-->
 <form action="dbprocess.php" method="POST">
     <label>Product Code</label><br>
     <input type="text" name="productCode" readonly value="
     <?php
-    echo $newProduct->productCode;
+    echo $newProduct->productCode; //echo new productCode som skapades i constructor för new Product
     ?>
 
     "><br><br>

@@ -15,27 +15,6 @@ class ProductLines extends Db {
         $db = new Db;
         $pdo = $db->connect();
 
-
-        // $stmt = $this->connect()->query("SELECT * FROM productlines");
-        // while ($row = $stmt->fetchAll(PDO::FETCH_ASSOC)) {
-        //     $productLine = $row['productLine'];
-            
-        //     return $productLine;
-        // }
-
-        // $sql = "SELECT * FROM products WHERE productLine = '" . $this->productLine . "'";
-
-        // $getProductLine = $pdo->prepare($sql);
-        // $getProductLine->execute();
-
-        // $rows = $getProductLine->fetchAll(PDO::FETCH_ASSOC);
-
-        // $sql = "SELECT * FROM productlines";
-        // $stmt = $pdo->prepare($sql);
-        // $stmt->execute();
-
-        // $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
     }
 
     public function getProductLine() {
@@ -57,12 +36,12 @@ class ProductLines extends Db {
     }
 
     public function getProductLineName() {
-    $db = new Db;
-    $pdo = $db->connect();
-    
-    $sql = "SELECT productLine FROM productlines";
-    $stmt = $pdo->prepare($sql); 
-    $stmt->execute();
+        $db = new Db;
+        $pdo = $db->connect();
+        
+        $sql = "SELECT productLine FROM productlines";
+        $stmt = $pdo->prepare($sql); 
+        $stmt->execute();
 
     }
 
@@ -108,4 +87,4 @@ class ProductLines extends Db {
         return $getProductLines; 
     }
 
-}
+} 

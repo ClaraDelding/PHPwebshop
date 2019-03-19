@@ -1,5 +1,4 @@
 <?php
-    //require_once "connect.php";
     require_once "funktioner.php";
 
 class Product extends Db {
@@ -14,6 +13,7 @@ class Product extends Db {
     public $MSRP;
  
     function __construct($productCode = ""){
+
         if($productCode == "") {
             $db = new Db;
             $pdo = $db->connect();
@@ -35,14 +35,20 @@ class Product extends Db {
         $this->quantityInStock = $quantityInStock;
         $this->buyPrice = $buyPrice;
         $this->MSRP = $MSRP; 
+        // $this->productCode = $productCode;
 
         $db = new Db;
         $pdo = $db->connect();
+
+        // $sql = "UPDATE products SET productName ='" . $productName . "', productDescription = '" . $productDescription . "', 
+        // MSRP = '" . $MSRP . "', productVendor ='" . $productVendor . "' WHERE productCode = '" . $this->productCode. "'";
 
         $sql = "INSERT INTO products SET productCode ='" . $this->productCode . "', productName ='" . 
         $productName . "', productLine ='" . $productLine . "', productScale ='" . $productScale . "', productVendor = '" . 
         $productVendor . "', productDescription = '" . $productDescription . "', quantityInStock = '" . $quantityInStock . "',
         buyPrice = '" . $buyPrice . "', MSRP = '" . $MSRP . "'";
+
+
 
         $stmt = $pdo->prepare($sql); 
         $stmt->execute();
@@ -70,19 +76,25 @@ class Product extends Db {
         $this->MSRP = $rows[0]["MSRP"];
     }
 
-    public function updateProduct() {
+    public function updateProduct($productName, $productDescription, $MSRP, $productVendor) {
+        $this->productName = $productName;
+        $this->productDescription =$productDescription;
+        $this->MSRP = $MSRP;
+        $this->productVendor = $productVendor;
+
         $db = new Db;
         $pdo = $db->connect();
 
-        $sql = "UPDATE products
-        SET productName = '" . $this->{"productName"} . "', productLine = '" . $this->{"productLine"} . "', productScale = '" . 
-        $this->{"productScale"} . "', productVendor = '" . $this->{"productVendor"} . "', productDescription = '" . 
-        $this->{"productDescription"} . "', quantityInStock = '" . $this->{"quantityInStock"} . "', buyPrice = '" . 
-        $this->{"buyPrice"} . "', MSRP = '" . $this->{"MSRP"} . "'
-        WHERE productCode = '" . $this->productCode . "'";
+        // $sql = "UPDATE products SET productName ='" . $productName . "', productDescription = '" . $productDescription . "', 
+        // MSRP = '" . $MSRP . "', productVendor ='" . $productVendor . "' WHERE productCode = '" . $this->productCode. "'";
+        //NEDANSTÅENDE KOD KOPIERAD FRÅN GENERELLA KODEN SOM FUNKADE FÖRUT!!!
+        $sql = "UPDATE products SET productName ='" . $productName . "', productDescription = '" . $productDescription . "', 
+        MSRP = '" . $MSRP . "', productVendor ='" . $productVendor . "' WHERE productCode = '" . $this->productCode . "'";
 
         $toSave = $pdo->prepare($sql);
         $toSave->execute();
+
+     
     }
 
     public function deleteProduct() {
@@ -105,11 +117,20 @@ class Product extends Db {
         $getProductLine->execute();
 
         $rows = $getProductLine->fetchAll(PDO::FETCH_ASSOC);
-
-        // $this->productLine = $rows[0]['productLine'];
-        // $this->textDescription = $rows[0]['textDescription'];
-        // $this->htmlDescription = $rows[0]['htmlDescription'];
-        // $this->image = $rows[0]["image"];
     }
+
+    public function getProductLines() {
+        $db = new Db;
+        $pdo = $db->connect();
+
+        $sql = "SELECT productLine FROM productLines";
+
+        $getProductLines = $pdo->prepare($sql);
+        $getProductLines->execute();
+
+        return $getProductLines;
+
+    }
+
 }
 ?>

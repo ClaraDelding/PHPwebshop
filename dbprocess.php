@@ -3,12 +3,6 @@
 require_once "connect.php";
 require_once "klasser.php";
 
-//-----------------------READ PRODUCT--------------------------------------------//
-
-
-
-
-
 
 //----------------------------SKAPA PRODUKT -------------------------------------//
 
@@ -24,34 +18,31 @@ if (isset($_POST['save'])) {
     $buyPrice = $_POST['buyPrice'];
     $MSRP = $_POST['MSRP'];
 
-    //Send values from $_POST-array through the variables and insert into proper column in table products to create new row.
     $newProduct = new Product();
     $newProduct->createProduct($_POST['productName'], $_POST['productLine'], $_POST['productScale'], $_POST['productVendor'], 
     $_POST['productDescription'],$_POST['quantityInStock'], $_POST['buyPrice'], $_POST['MSRP']);
-
-    // $sql = "INSERT INTO products SET productCode ='" . $productCode . "', productName ='" . $productName . "', productLine ='" . $productLine . "', productScale ='" . $productScale . "',
-    // productVendor = '" . $productVendor . "', productDescription = '" . $productDescription . "', quantityInStock = '" . $quantityInStock . "',
-    // buyPrice = '" . $buyPrice . "', MSRP = '" . $MSRP . "'";
-
-    // $stmt = $pdo->prepare($sql); // create prepared statement that inserts values through variables to the specified columns
-    // $stmt->execute(); // executes the insert
 }
 
-
-//-----------------------------UPPDATERA PRODUKT----------------------------------------------------------//
+//-----------------------------UPPDATERA/REDIGERA PRODUKT----------------------------------------------------------//
 
 //If user pressed update-button, collect information from array $_POST and put inside variables
 if (isset($_POST['update'])) {
     $name = $_POST['productName'];
     $description = $_POST['productDescription'];
     $price = $_POST['MSRP'];
+    $productVendor = $_POST['productVendor'];
     $productNumber = $_POST['productNumber'];
+
+    $newProduct = new Product();
+    $newProduct->updateProduct($_POST['productName'], $_POST['productDescription'], $_POST['MSRP'], $_POST['productVendor'],
+    $_POST['productNumber']);
 
     //Send values from $_POST-array through the variables and update proper column in table products in the row which PK matches the productcode
 
-     $sql = "UPDATE products SET productName ='" . $name . "', productDescription = '" . $description . "', MSRP = '" . $price . "' WHERE productCode = '" . $productNumber. "'"; //OBS you need ' before and after variables to mark them as strings as the sql demands it
-     $stmt = $pdo->prepare($sql); // prepare the pdo
-     $stmt->execute(); // execute does the actual update
+    //  $sql = "UPDATE products SET productName ='" . $name . "', productDescription = '" . $description . "', 
+    //  MSRP = '" . $price . "', productVendor ='" . $productVendor . "' WHERE productCode = '" . $productNumber. "'";
+    //  $stmt = $pdo->prepare($sql); // prepare the pdo
+    //  $stmt->execute(); // execute does the actual update
 
 }
 

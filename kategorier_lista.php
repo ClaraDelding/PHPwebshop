@@ -1,8 +1,14 @@
 <?php
 
 require_once "connect.php";
+require_once "klasser.php";
+require_once "dbprocess.php";
+require_once "temporary.php";
 
-$stmt = $pdo->query("SELECT productLine FROM productLines");
+
+$lines = new Product();
+
+$productLines = $lines->getProductLines();
 
 ?>
 
@@ -19,19 +25,17 @@ $stmt = $pdo->query("SELECT productLine FROM productLines");
  <body>
      <br><br>
 
-     <?php
-         foreach ($stmt as $kat) {
-       
-            echo "<p class='details'>";
-            ?>
-            <a href="instantieringsexperiment.php?productLine=<?php echo $kat['productLine']; ?>"><?php echo $kat['productLine']; ?></a><br>
-            <?php
-            echo "</p>";
-     }
+    <?php while ($kat = $productLines->fetch()) {
     ?>
-    
+    <p> 
+    <a href="produktlista.php?productLine=<?php echo $kat['productLine']; ?>"><?php echo $kat['productLine']; ?></a><br>
+    <p>
+    <?php
+    } ?>
+
  </body>
  </html>
+
 
 
 

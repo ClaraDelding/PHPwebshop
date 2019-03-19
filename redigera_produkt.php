@@ -2,7 +2,7 @@
 
 require_once "connect.php";
 require_once "dbprocess.php";
-
+//hämta värdena för de kolumner som ska redigeras via $_GET metoden (url via dynamisk länk från föregående sida)
 if (isset($_GET['product'])) {
     $name = $_GET['productName'];
     $description = $_GET['productDescription'];
@@ -14,7 +14,6 @@ if (isset($_GET['product'])) {
 
 ?>
 
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -25,20 +24,20 @@ if (isset($_GET['product'])) {
     </head>
 
     <body>
-
+    <!--echoa ut alla värden i rutorna som placeholder-värden. När formuläret submittas, skicka till dbprocess för att utföra olika metoder-->
     <form action="dbprocess.php" method="post">
     <h2>Redigera produkt</h2>
     
     <label>ProductNumber</label><br>
     <input type="text" name="productNumber" readonly value="
 <?php
-    echo $productNumber;      /*Fills in the value of product number from the database.*/
+    echo $productNumber;
 ?>    
     "><br><br>
     <label>Produktnamn</label><br>
     <input type="text" name="productName" placeholder="Produktnamn" value="
 <?php
-    echo $name; /*Fills in the value of name from the database*/
+    echo $name;
 ?>    
     "><br><br>
     <label>Beskrivning</label><br>
@@ -50,16 +49,18 @@ if (isset($_GET['product'])) {
     <label>Pris</label><br>
     <input type="text" name="MSRP" placeholder="Fyll i Pris" value="
 <?php
-    echo $price;      /*Fills in the value of price from the database*/
+    echo $price;
 ?>
     "><br><br>
     <label>ProductVendor</label><br>
-    <input type="text" name="ProductVendor"  value="
-<?php
-    echo $productVendor;      /*Fills in the value of price from the database.*/
+    <input type="text" name="productVendor"  value="
+    <?php 
+    echo $productVendor;
 ?>  "><br><br> 
     <input type="submit" value="update" name="update"><br><br>
-    <!-- <a href="dbprocess.php?product=<?php echo $productNumber['productCode']; ?>&productName=<?php echo $product['productName']; ?>&productDescription=<?php echo $product['productDescription']; ?>&MSRP=<?php echo $product['MSRP']; ?>&productVendor=<?php echo $product['productVendor'] ?>">-->
+    <!--<a href="dbprocess.php?product=<?php echo $productNumber['productCode']; ?>&productName=<?php echo $product['productName']; ?>
+    &productDescription=<?php echo $product['productDescription']; ?>&MSRP=<?php echo $product['MSRP']; ?>
+    &productVendor=<?php echo $product['productVendor'] ?>">-->
     <input type="submit" value="Delete product" name="delete">
     </a>
 </form>
