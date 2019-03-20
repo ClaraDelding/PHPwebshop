@@ -1,8 +1,7 @@
 <?php
 
-include "funktioner.php";
-include "klasser.php";
-include "temporary.php";
+include "../include/dbklass.php";
+include "../include/klasser.php";
 
 //hämta värdet för productLine via url:en. Stoppa in den i arrayen $_GET. Om värde saknas, echo else
 if (isset($_GET['productLine'])) {
@@ -25,12 +24,11 @@ $productsInLine = $lines->getProductsInLine();
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <title>Part 2 of R in CRUD</title>
      <meta name="viewport" content="width=device-width, initial-scale=1">
-     <link rel="stylesheet" type="text/css" media="screen" href="produktlista.css">
  </head>
  <body>
     <?php 
-    include "dbprocess.php";
-    include "design.php";
+    include "../include/dbprocess.php";
+    include "../include/generic/design.php";
     ?>
      <br><br>
      <h2>Choose product to edit</h2>
@@ -43,8 +41,6 @@ $productsInLine = $lines->getProductsInLine();
     <p>
     <?php
     } ?>
-    
-
     
  </body>
  </html>

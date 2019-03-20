@@ -1,6 +1,7 @@
 <?php
-require_once "funktioner.php";
-require_once "klasser.php";
+include "../include/dbklass.php";
+include "../include/klasser.php";
+include "../include/dbprocess.php";
 
 if (isset($_GET['product'])) {
     $productCode = filter_input(INPUT_GET, 'product', FILTER_SANITIZE_ENCODED);
@@ -22,8 +23,7 @@ $product->getProduct();
    </head>
    <body>
     <?php 
-        require_once "dbprocess.php";
-        include "design.php";
+        include "../include/generic/design.php";
     ?>
        <main>
        <article>

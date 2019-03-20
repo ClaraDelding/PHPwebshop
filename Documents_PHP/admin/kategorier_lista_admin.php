@@ -1,13 +1,11 @@
 <?php
 
-include "../include/connect.php";
+include "../include/generic/connect.php";
 include "../include/klasser.php";
 include "../include/dbprocess.php";
-include "../includetemporary.php";
 
-
+//Hämta lista över kategorier via metoden getProductLines i klassen Product
 $lines = new Product();
-
 $productLines = $lines->getProductLines();
 
 ?>
@@ -19,16 +17,21 @@ $productLines = $lines->getProductLines();
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <title>Part 1 of R in CRUD</title>
      <meta name="viewport" content="width=device-width, initial-scale=1">
-     <link rel="stylesheet" type="text/css" media="screen" href="produktlista.css">
      <script src="main.js"></script>
  </head>
  <body>
-     <br><br>
+    <?php 
+    include "../include/generic/design.php";
+    ?>
 
+     <br><br>
+    
+    <h2>Choose category to edit products in</h2>
+    <!--loopa igenom productLines, hämta nästa rad för varja varv-->
     <?php while ($kat = $productLines->fetch()) {
     ?>
-    <p> 
-    <a href="produktlista.php?productLine=<?php echo $kat['productLine']; ?>"><?php echo $kat['productLine']; ?></a><br>
+    <p>
+    <a href="produktlista_admin.php?productLine=<?php echo $kat['productLine']; ?>"><?php echo $kat['productLine']; ?></a><br>
     <p>
     <?php
     } ?>
@@ -37,6 +40,4 @@ $productLines = $lines->getProductLines();
  </html>
 
 
-
-
-
+<?php

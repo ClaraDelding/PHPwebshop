@@ -1,13 +1,14 @@
 <?php
 
-require_once "connect.php";
-require_once "dbprocess.php";
+include "../include/generic/connect.php";
+include "../include/dbprocess.php";
+
 //hämta värdena för de kolumner som ska redigeras via $_GET metoden (url via dynamisk länk från föregående sida)
 if (isset($_GET['product'])) {
     $name = $_GET['productName'];
     $description = $_GET['productDescription'];
     $price = $_GET['MSRP'];
-    $productNumber = $_GET['product'];
+    $productCode = $_GET['product'];
     $productVendor = $_GET['productVendor'];
 
 }
@@ -20,25 +21,24 @@ if (isset($_GET['product'])) {
         <title>The U in CRUD</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" media="screen" href="template.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="skapa_produkt.css">
+        <link rel="stylesheet" type="text/css" media="screen" href="../include/css/template.css">
+        <link rel="stylesheet" type="text/css" media="screen" href="../include/css/skapa_produkt.css">
     </head>
 
     <body>
 
     <?php 
-    require_once "dbprocess.php";
-    include "design.php";
+    include "../include/generic/design.php";
     ?>
-
+    <!--OBS ÄNDRA PATH I FORM ACTION OCKSÅ??????-->
     <!--echoa ut alla värden i rutorna som placeholder-värden. När formuläret submittas, skicka till dbprocess för att utföra olika metoder-->
-    <form action="dbprocess.php" method="post">
+    <form action="../include/dbprocess.php" method="post">
     <h2>Redigera produkt</h2>
     
     <label>ProductNumber</label><br>
-    <input type="text" name="productNumber" readonly value="
+    <input type="text" name="productCode" readonly value="
 <?php
-    echo $productNumber;
+    echo $productCode;
 ?>    
     "><br><br>
     <label>Produktnamn</label><br>

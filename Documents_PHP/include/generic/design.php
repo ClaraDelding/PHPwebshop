@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Design</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="template.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="admin.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../include/css/template.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="..include/css/admin.css">
     <script src="main.js"></script>
 </head>
 <body>
@@ -15,5 +15,3 @@
 
     <?php include 'head_nav.php' ?>
         
-
-    

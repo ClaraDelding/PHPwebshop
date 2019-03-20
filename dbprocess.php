@@ -1,6 +1,6 @@
 <?php
 
-require_once "connect.php";
+require_once "/generic/connect.php";
 require_once "klasser.php";
 
 

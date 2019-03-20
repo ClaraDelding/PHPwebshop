@@ -46,7 +46,7 @@
                         <a href="kategorier_lista_admin.php" class=""> Edit products </a>
                     </article>
                     <article class="navLinks">
-                    <a href="#" class=""> Edit customers </a>
+                    <a href="edit_customers.php" class=""> Edit customers </a>
                     </article>
                     <article class="navLinks">
                         <a href="#" class="p"> Logga in </a>
