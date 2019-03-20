@@ -10,11 +10,13 @@
 </head>
 <body>
     <h1> Startsida - Admin eller kund? </h1>
-    <a href="adminsidor/login.php"> Admin </a> 
+    
     <hr>
-    <a href="customers/login.php"> Kund </a>
+    <a href="../index.php"> 1.0 </a>
     <hr>
-    <a href="design/startsida.php"> Design </a>
+    <a href="customers/sidor/startsida.php"> Customers </a>
+    <hr>
+    <a href="admin/sidor/startsida.php"> Admin </a>
     <hr>
     
 

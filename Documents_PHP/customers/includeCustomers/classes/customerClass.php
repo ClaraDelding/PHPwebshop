@@ -1,14 +1,14 @@
 <?php
 
 // user 2.0
-include 'generic/db.php';
+include '../../genericInclude/classes/db.php';
 class Customers  {
 
     private $db;
     public $is_logged_in = false;
 
     public function __construct() {
-        // Skapar en ny instans av DB, och sparar den i vårt privata $db. 
+        // Lagrar anslutning till databasen. 
         $obj = new DB();
         $this->db = $obj->pdo;
     }
@@ -16,22 +16,21 @@ class Customers  {
     // Inloggning. 
     public function login($user, $pass) {
         
-        // Hämta lösenordet koppålat till användarnamnet. 
-
-        $sql = "SELECT password FROM customers WHERE username = :user";
+        // Hämtar lösenord som överenstämmer med användaren om användaren inte har tagits bort soft
+        $sql = "SELECT password FROM customers WHERE username = :user AND exist = 'yes'";
         $stmt = $this->db->prepare($sql);
         $stmt->execute([':user' => $user]); 
-        // Fetchcolumn hämtar ett värde istället för en array i en array. 
+
+        // Hash är då det lösenord som vi hämtat från DB. Det är hashat. 
         $hash = $stmt->fetchColumn();
 
+        // verifierar att lösenordet matcher hashat lösen i DB. 
         $this->is_logged_in = password_verify($pass, $hash);
 
         if($this->is_logged_in) {
             $_SESSION['logged_in'] = true;
             $_SESSION['name'] = "$user";
-            $_SESSION['shoesize'] = '43';
         }
-        var_dump($this->is_logged_in);  
         return $this->is_logged_in; 
     }
 
@@ -39,8 +38,7 @@ class Customers  {
     public function register($username, $corpName, $firstname, $lastname, $phone, $address1, 
     $address2, $city, $state, $postalcode, $country, $password) {
 
-        // Se om användarnamn redan finns -- Gör denna så vi kan kalla den från flera olika? kolumn som inparameter?
-        // Kan kalla på denna, som, om sann, skickar vidare till nästa funktion. 
+        // Här ser vi om användarnamnet redan används. 
         $stmt3 = $this->db->prepare("SELECT * FROM customers WHERE username = :checkUser");
         $stmt3->execute([':checkUser' => $username]);
         $checkUsername = $stmt3->fetchColumn();
@@ -49,12 +47,12 @@ class Customers  {
             return false;
         }   
         else {            
-            // Hämta det högsta Id i tabellen och lägg till 1. Gör denna så vi kan kalla den från flera olika? kolumn som inparameter?
+            // Hämta det högsta Id i tabellen och lägg till 1. 
             $getId = $this->db->prepare("SELECT MAX(customerNumber) FROM customers");
             $getId->execute();
             $result = ($getId->fetchColumn() + 1);
             
-            // Hasha lösenordet
+            // Här hashar vi lösenordet. 
             $hash = password_hash($password, PASSWORD_DEFAULT);
         
             // Skapa ny användare med given data.
@@ -79,31 +77,38 @@ class Customers  {
             return true; 
         }
     }
+    
  
   
-    // se användaruppgifter. 
+    // Sätter in användaruppgfiter i Inputs så att vi kan göra ändringar och skicka in de. 
     public function view() {
+        
         $user = $_SESSION['name'];
         
-        $stmt2 = $this->db->prepare("SELECT customerName, contactFirstName, contactLastName, phone, addressLine1, addressLine2, city, state, postalCode, country FROM customers WHERE username = :user");
+        $stmt2 = $this->db->prepare("SELECT customerName, contactFirstName, contactLastName, phone, addressLine1, addressLine2, city, state, postalCode, country, password FROM customers WHERE username = :user");
         $stmt2->execute([':user' => $user]); 
         $result = $stmt2->fetchAll(PDO::FETCH_ASSOC);     
     
         foreach($result as $col) {
             foreach($col as $col => $value) {   
-                echo "<pre>";
-                echo "$col <br> <input value='$value' name='$col'>";   
-                echo "</pre>";            
+
+                if($col == 'password') {
+                    echo "$col <br><div class='col-3 input-effect'> <input type='password' value='' name='$col'></div>";   
+
+                } else {
+                echo "$col <br><div class='col-3 input-effect'> <input class='effect-19' type='text' value='$value' name='$col'></div>";   
+                }
             }
         }
     }
 
-    // Ändra användaruppgifter  - borde kunna ändra med det värdet det har. Kan ändra värdet de har med input?     
+    // Ändra användaruppgifter  -      
     public function editUser($corpName, $firstname, $lastname, $phone, $address1, 
-    $address2, $city, $state, $postalcode, $country) {
-        
+    $address2, $city, $state, $postalcode, $country, $password) {
         $user = $_SESSION['name'];
-        $stmt2 = $this->db->prepare("UPDATE customers SET customerName = :customername, contactFirstName = :contactFirstName, contactLastName = :contactLastName, phone = :phone, addressLine1 = :address1, addressLine2= :address2, city = :city, state = :state, postalCode = :postalCode, country = :country WHERE username = :user");
+        $hash = password_hash($password, PASSWORD_DEFAULT);
+
+        $stmt2 = $this->db->prepare("UPDATE customers SET customerName = :customername, contactFirstName = :contactFirstName, contactLastName = :contactLastName, phone = :phone, addressLine1 = :address1, addressLine2= :address2, city = :city, state = :state, postalCode = :postalCode, country = :country, password = :pass WHERE username = :user");
 
         $stmt2->bindValue(':customername', $corpName, PDO::PARAM_STR);
         $stmt2->bindValue(':contactLastName', $lastname, PDO::PARAM_STR);
@@ -116,14 +121,42 @@ class Customers  {
         $stmt2->bindValue(':postalCode', $postalcode, PDO::PARAM_STR);
         $stmt2->bindValue(':country', $country, PDO::PARAM_STR);
         $stmt2->bindValue(':user', $user, PDO::PARAM_STR);
-        $stmt2->execute(); 
+        $stmt2->bindValue(':pass', $hash, PDO::PARAM_STR);
 
-        // echo $user;
+        $stmt2->execute(); 
 
         return true;
     }
 
-    // ta bort användare
+        // Om användaren tar bort sitt konto så tar vi bort känslig information, samt säger att användaren inte längre existerar. vi tar inte bort användaren.      
+        public function softDelete() {
+
+            $user = $_SESSION['name'];
+            $softDelete = 'Soft Delete';
+        
+    
+            $stmt2 = $this->db->prepare("UPDATE customers SET contactFirstName = :contactFirstName, contactLastName = :contactLastName, phone = :phone, addressLine1 = :address1, addressLine2= :address2, username = :username, password = :pass, exist = :exist WHERE username = :user");
+    
+            $stmt2->bindValue(':contactLastName', $softDelete, PDO::PARAM_STR);
+            $stmt2->bindValue(':contactFirstName', $softDelete, PDO::PARAM_STR);
+            $stmt2->bindValue(':phone', $softDelete, PDO::PARAM_STR);
+            $stmt2->bindValue(':address1', $softDelete, PDO::PARAM_STR);
+            $stmt2->bindValue(':address2', $softDelete, PDO::PARAM_STR);
+            $stmt2->bindValue(':username', $softDelete, PDO::PARAM_STR);
+            $stmt2->bindValue(':pass', $softDelete, PDO::PARAM_STR);
+            $stmt2->bindValue(':exist', 'not', PDO::PARAM_STR);
+
+            $stmt2->bindValue(':user', $user, PDO::PARAM_STR);
+
+    
+            $stmt2->execute(); 
+
+            $_SESSION = array();
+
+            return true;
+        }
+
+    // ta bort användare helt och hållet. Kommer ej användas. 
     public function remove() {
 
         $user = $_SESSION['name'];
@@ -151,6 +184,7 @@ class Customers  {
         return true;
      
     }
+
 
 
 }

@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,14 +9,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Design</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="design.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../includeCustomers/css/design.css">
     <script src="main.js"></script>
 </head>
 <body>
 
     <div class="container">
 
-       <?php include 'header.php' ?>
+    <?php require_once '../includeCustomers/other/header.php' ?>
        
         
 
