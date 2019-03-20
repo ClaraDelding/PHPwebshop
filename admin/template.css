@@ -1,0 +1,336 @@
+html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  body {
+      margin:0;
+      background-color:rgb(248, 242, 242);
+  }
+
+.container {
+    
+    display:grid;
+    grid-template-columns: 2fr 6fr 2fr;
+    grid-template-rows: 2fr 1fr 10fr 2fr;
+
+    /* background-color: #2196F3; */
+}
+
+.container .header {
+    grid-column: span 3;
+}
+.container .nav {
+    grid-column: span 3;
+    /* background-color:greenyellow */
+
+}
+.container .footer {
+    grid-column: span 3;
+}
+
+
+/* flex */
+.mainChild {
+    flex-direction:column-wrap; 
+    display: flex;  
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Header  */
+.headerSection {
+    background-color:rgb(207, 196, 196);
+    /* height:100%; */
+    /* flex:1 100%; */
+    flex: 0 0 20%;
+    
+}
+.header .headerSection1 img {
+    height:35%;
+    position:relative;
+    align-self:stretch;
+    margin-left:5%;
+}
+.header .headerSection2 img {
+    height:96px;
+    position:relative;
+}
+
+.header .headerSection2 {
+    /* flex:3 0px; */
+    flex: 0 0 60%;
+}
+   .header .headerSection3 .notLoggedIn {
+        width:80%;
+    }
+
+    .header .headerSection3 .notLoggedIn a {
+        text-decoration:none;
+        width: 100%;
+        margin-left:3.5%;
+        height:40%;
+        display:block;
+        float:left;
+        font-size:1.1em;
+        
+
+        
+    }
+/* Nav  */
+.nav {
+        border:1px solid black;
+
+}
+.navSection {
+    background-color:rgb(206, 184, 184);
+    /* height:100%; */
+    /* flex:1 100%; */
+    /* border:1px solid black; */
+    flex: 0 0 20%;
+}
+
+.nav .navSection2 {
+    /* flex:3 0px; */
+    flex: 0 0 60%;
+}
+
+   /* Nav Item Container */
+   .navItemsContainer {
+    display:flex;
+    height:100%;
+    flex-direction:column-wrap;
+    }
+    .navItems {
+        height:100%;
+        padding:1px;
+        /* background-color:orange; */
+        flex: 0 0 15%;
+    }
+    .navItem3 {
+        flex: 0 0 40%;
+    }
+    /* .navItems .parts {
+      
+    } */
+    .navItems a {
+        height:100%;
+        /* background-color:pink; */
+        display:blocK;
+        font-size:1.3em;
+        padding-top:5%;
+        text-decoration:none;
+        color:black;
+    }
+    .navItems .aLeft {
+        border-left: 2px solid black;
+    }
+    .navItems .aRight {
+        border-right: 2px solid black;
+    }
+    .navItems a:hover {
+        background-color:rgb(180, 148, 148);
+
+    }
+
+    
+
+    .navItems form {
+        height:100%;
+    }
+    .navItems .part3 {
+        width:95%;
+        min-height:100%;
+        padding:0;
+        border:none;
+        padding-left:8%;
+        
+    }
+
+
+/* Aside */
+.aside {
+    border:1px solid black;
+}
+
+
+/* Footer */
+.footer {
+    background-color:rgb(134, 120, 120);
+}
+
+/* main */
+.main {
+    min-height:100%;
+    
+
+}
+.main h1{
+    text-align:center;
+    margin:0;
+}
+    .main div {
+        width:100%;
+    }
+    .main h1 {
+        flex: 0 0 100%;
+        margin-bottom:20px;
+        margin-top:20px;
+    }
+
+    .ngt{ 
+        width:100%;
+    }
+        .itemContainerMain {
+            display:flex;
+            flex-direction: row;    
+            flex-wrap:wrap;
+            width:100%;
+        }
+            .itemContainerMain .mainItem {
+                flex: 1 30%;
+                width:30%;
+                border:1px solid black;
+                height:30%;
+                margin-top:5%;
+            }
+
+
+
+
+/* body {
+
+    background-color: green;
+}
+
+.wrapper { 
+    display: grid; 
+    grid-template-columns: repeat(4, 1fr); 
+    grid-auto-rows: 100px; 
+    border: 2 px solid black;
+  } 
+  
+  .box1 {
+    grid-column-start: 1; 
+    grid-column-end: 5; 
+    grid-row-start: 1; 
+    grid-row-end: 2; 
+    background-color: gray;
+  }
+
+  .box2 { 
+    grid-column-start: 1; 
+    grid-column-end: 5; 
+    grid-row-start: 2; 
+    grid-row-end: 3; 
+    background-color:red;
+  }
+  
+  .box3 { 
+    grid-column-start: 1; 
+    grid-column-end: 2; 
+    grid-row-start: 3; 
+    grid-row-end: 5; 
+    background-color: blue;
+  }
+
+  .box4 {
+    display: flex; 
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 2;
+    grid-column-start: 2;
+    grid-column-end: 4;  
+    grid-row-start: 3; 
+    grid-row-end: 5; 
+    background-color: orange;
+  }
+
+  .box5 { 
+    grid-column-start: 4;
+    grid-column-end: 5;  
+    grid-row-start: 3; 
+    grid-row-end: 5; 
+    background-color: pink;
+  }
+  .box6 {
+    display:flex;
+    grid-column-start: 1;
+    grid-column-end: 5; 
+    grid-row-start: 5; 
+    grid-row-end: 7; 
+    background-color: purple;
+    padding: 0.5em;
+  }
+
+  .footer-items {
+    border: 1px solid black;
+    width: 25%;
+    margin: 0.2em;
+    padding: 1em;
+  }
+
+  .info {
+    padding: 1em;
+  }
+
+  .dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  margin: 1.5em;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+.cart-div {
+    padding: 2em;
+    padding-left: 25%;
+    
+}
+
+.cart-img {
+    
+}
+
+.category {
+
+    background-color: #3e8e41;
+    flex: 3;
+} */
+
+
+  

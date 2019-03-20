@@ -19,11 +19,18 @@ if (isset($_GET['product'])) {
     <head>
         <title>The U in CRUD</title>
         <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="produktlista.css"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" media="screen" href="template.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="skapa_produkt.css">
     </head>
 
     <body>
+
+    <?php 
+    require_once "dbprocess.php";
+    include "design.php";
+    ?>
+
     <!--echoa ut alla värden i rutorna som placeholder-värden. När formuläret submittas, skicka till dbprocess för att utföra olika metoder-->
     <form action="dbprocess.php" method="post">
     <h2>Redigera produkt</h2>

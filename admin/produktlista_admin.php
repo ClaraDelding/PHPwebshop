@@ -1,8 +1,8 @@
 <?php
 
-require_once "funktioner.php";
-require_once "klasser.php";
-require_once "temporary.php";
+include "funktioner.php";
+include "klasser.php";
+include "temporary.php";
 
 //hämta värdet för productLine via url:en. Stoppa in den i arrayen $_GET. Om värde saknas, echo else
 if (isset($_GET['productLine'])) {
@@ -28,7 +28,12 @@ $productsInLine = $lines->getProductsInLine();
      <link rel="stylesheet" type="text/css" media="screen" href="produktlista.css">
  </head>
  <body>
+    <?php 
+    include "dbprocess.php";
+    include "design.php";
+    ?>
      <br><br>
+     <h2>Choose product to edit</h2>
     <!-- loopa igenom arrayen med produkterna, lägg dem i dynamiska länkar som leder till respektive produktsida-->
      <?php while ($row = $productsInLine->fetch()) {
     ?>

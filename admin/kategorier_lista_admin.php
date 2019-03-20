@@ -1,12 +1,12 @@
 <?php
 
-require_once "connect.php";
-require_once "klasser.php";
-require_once "dbprocess.php";
-require_once "temporary.php";
+include "connect.php";
+include "klasser.php";
+include "dbprocess.php";
+include "temporary.php";
+
 
 $lines = new Product();
-
 $productLines = $lines->getProductLines();
 
 ?>
@@ -22,7 +22,13 @@ $productLines = $lines->getProductLines();
      <script src="main.js"></script>
  </head>
  <body>
+    <?php 
+    include "design.php";
+    ?>
+
      <br><br>
+    
+    <h2>Choose category to edit products in</h2>
 
     <?php while ($kat = $productLines->fetch()) {
     ?>

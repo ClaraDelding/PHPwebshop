@@ -27,11 +27,11 @@ if (isset($_POST['save'])) {
 
 //If user pressed update-button, collect information from array $_POST and put inside variables
 if (isset($_POST['update'])) {
-    $name = $_POST['productName'];
-    $description = $_POST['productDescription'];
-    $price = $_POST['MSRP'];
-    $productVendor = $_POST['productVendor'];
-    $productNumber = $_POST['productNumber'];
+    $productName = filter_input(INPUT_POST, 'productName', FILTER_SANITIZE_STRING);
+    $description = filter_input(INPUT_POST, 'productDescription', FILTER_SANITIZE_STRING);
+    $price = filter_input(INPUT_POST, 'MSRP', FILTER_SANITIZE_NUMBER_INT);
+    $productVendor = filter_input(INPUT_POST, 'productVendor', FILTER_SANITIZE_STRING);
+    $productCode = filter_input(INPUT_POST, 'productNumber', FILTER_SANITIZE_STRING);
 
     $newProduct = new Product();
     $newProduct->updateProduct($_POST['productName'], $_POST['productDescription'], $_POST['MSRP'], $_POST['productVendor'],
@@ -39,8 +39,8 @@ if (isset($_POST['update'])) {
 
     //Send values from $_POST-array through the variables and update proper column in table products in the row which PK matches the productcode
 
-    //  $sql = "UPDATE products SET productName ='" . $name . "', productDescription = '" . $description . "', 
-    //  MSRP = '" . $price . "', productVendor ='" . $productVendor . "' WHERE productCode = '" . $productNumber. "'";
+    //  $sql = "UPDATE products SET productName ='" . $productName . "', productDescription = '" . $description . "', 
+    //  MSRP = '" . $price . "', productVendor ='" . $productVendor . "' WHERE productCode = '" . $productCode. "'";
     //  $stmt = $pdo->prepare($sql); // prepare the pdo
     //  $stmt->execute(); // execute does the actual update
 

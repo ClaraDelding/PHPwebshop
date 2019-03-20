@@ -1,0 +1,25 @@
+body {
+    background-color: 
+}
+
+.navLinks a {
+    height:100%;
+    /* background-color:pink; */
+    display:blocK;
+    font-size:1.3em;
+    padding-top:5%;
+    padding-left: 5%
+    text-decoration:none;
+    color:black;
+}
+.navItems .aLeft {
+    border-left: 2px solid black;
+}
+.navItems .aRight {
+    border-right: 2px solid black;
+}
+.navItems a:hover {
+    background-color:rgb(180, 148, 148);
+
+}
+

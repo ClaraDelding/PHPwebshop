@@ -21,6 +21,10 @@ $product->getProduct();
        <meta name="viewport" content="width=device-width, initial-scale=1">
    </head>
    <body>
+    <?php 
+        require_once "dbprocess.php";
+        include "design.php";
+    ?>
        <main>
        <article>
        <section class="product-details">

@@ -34,7 +34,7 @@ class ProductLines extends Db {
         $this->image = $rows[0]["image"];
 
     }
-    //OBS LIGGER ÄVEN I PRODUCT UNDER NAMNET GetProductLines!!!!
+
     public function getProductLineName() {
         $db = new Db;
         $pdo = $db->connect();
