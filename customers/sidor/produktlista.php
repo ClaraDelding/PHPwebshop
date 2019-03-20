@@ -1,8 +1,8 @@
 <?php
 
-require_once "funktioner.php";
+require_once "dbklass.php";
 require_once "klasser.php";
-require_once "temporary.php";
+
 
 //Hämta värdet för productLine via url:en, stoppa in i arrayen $_GET
 if (isset($_GET['productLine'])) {
@@ -15,7 +15,6 @@ if (isset($_GET['productLine'])) {
 $lines = new ProductLines($_GET['productLine']);
 //kalla på funktionen som listar alla produkter i en specifik produktlinje
 $productsInLine = $lines->getProductsInLine();
-
 ?>
  
 <!DOCTYPE <!DOCTYPE html>
@@ -28,6 +27,9 @@ $productsInLine = $lines->getProductsInLine();
      <link rel="stylesheet" type="text/css" media="screen" href="produktlista.css">
  </head>
  <body>
+    <div class="container">
+        <?php include 'header.php' ?>
+    </div>
      <br><br>
     <!--loopa igenom arrayen med produkter, lägg in dem i dynamiska länkar som leder till respektive produktsida-->
      <?php while ($row = $productsInLine->fetch()) {

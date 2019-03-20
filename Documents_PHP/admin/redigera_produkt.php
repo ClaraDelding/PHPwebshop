@@ -1,7 +1,5 @@
 <?php
-
-include "../include/generic/connect.php";
-include "../include/dbprocess.php";
+include "dbprocess.php";
 
 //hämta värdena för de kolumner som ska redigeras via $_GET metoden (url via dynamisk länk från föregående sida)
 if (isset($_GET['product'])) {
@@ -10,7 +8,6 @@ if (isset($_GET['product'])) {
     $price = $_GET['MSRP'];
     $productCode = $_GET['product'];
     $productVendor = $_GET['productVendor'];
-
 }
 
 ?>
@@ -21,32 +18,27 @@ if (isset($_GET['product'])) {
         <title>The U in CRUD</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" media="screen" href="../include/css/template.css">
-        <link rel="stylesheet" type="text/css" media="screen" href="../include/css/skapa_produkt.css">
+        <link rel="stylesheet" type="text/css" media="screen" href="template.css">
+        <link rel="stylesheet" type="text/css" media="screen" href="skapa_produkt.css">
     </head>
-
     <body>
 
     <?php 
-    include "../include/generic/design.php";
+    include "design.php";
     ?>
-    <!--OBS ÄNDRA PATH I FORM ACTION OCKSÅ??????-->
+
     <!--echoa ut alla värden i rutorna som placeholder-värden. När formuläret submittas, skicka till dbprocess för att utföra olika metoder-->
-    <form action="../include/dbprocess.php" method="post">
+    <form action="dbprocess.php" method="post">
     <h2>Redigera produkt</h2>
     
-    <label>ProductNumber</label><br>
+    <label>ProductCode</label><br>
     <input type="text" name="productCode" readonly value="
 <?php
     echo $productCode;
 ?>    
     "><br><br>
     <label>Produktnamn</label><br>
-    <input type="text" name="productName" placeholder="Produktnamn" value="
-<?php
-    echo $name;
-?>    
-    "><br><br>
+    <input type="text" name="productName" placeholder="Produktnamn" value="<?php echo $name;?>"><br><br>
     <label>Beskrivning</label><br>
     <input type="text" name="productDescription" placeholder="Beskrivning" value="
 <?php
@@ -60,14 +52,16 @@ if (isset($_GET['product'])) {
 ?>
     "><br><br>
     <label>ProductVendor</label><br>
-    <input type="text" name="productVendor"  value="
-    <?php 
+    <input type="text" name="productVendor"  value="<?php 
     echo $productVendor;
-?>  "><br><br> 
+?>"><br><br>
+    <!-- För ev soft delete
+    <p>Available? 0 = yes, 1 = no </p><br>
+    <select name="available">
+        <option value="0">0</option>
+        <option value="1">1</option>
+    </select> <br><br>-->
     <input type="submit" value="update" name="update"><br><br>
-    <!--<a href="dbprocess.php?product=<?php echo $productNumber['productCode']; ?>&productName=<?php echo $product['productName']; ?>
-    &productDescription=<?php echo $product['productDescription']; ?>&MSRP=<?php echo $product['MSRP']; ?>
-    &productVendor=<?php echo $product['productVendor'] ?>">-->
     <input type="submit" value="Delete product" name="delete">
     </a>
 </form>

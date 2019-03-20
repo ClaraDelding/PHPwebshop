@@ -1,15 +1,12 @@
 <?php
 
-include "../include/generic/connect.php";
-include "../include/klasser.php";
-include "../include/dbprocess.php";
+include_once "klasser.php";
 
 //Hämta lista över kategorier via metoden getProductLines i klassen Product
 $lines = new Product();
 $productLines = $lines->getProductLines();
 
 ?>
-
 <!DOCTYPE <!DOCTYPE html>
  <html>
  <head>
@@ -21,7 +18,8 @@ $productLines = $lines->getProductLines();
  </head>
  <body>
     <?php 
-    include "../include/generic/design.php";
+    //inkludera header 
+    include "design.php";
     ?>
 
      <br><br>

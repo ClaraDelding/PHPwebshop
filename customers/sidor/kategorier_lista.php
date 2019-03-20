@@ -1,9 +1,8 @@
 <?php
 
-include "../include/connect.php";
-include "../include/klasser.php";
-include "../include/dbprocess.php";
-include "../includetemporary.php";
+include "connect.php";
+include "klasser.php";
+include "dbprocess.php";
 
 
 $lines = new Product();
@@ -19,11 +18,14 @@ $productLines = $lines->getProductLines();
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <title>Part 1 of R in CRUD</title>
      <meta name="viewport" content="width=device-width, initial-scale=1">
-     <link rel="stylesheet" type="text/css" media="screen" href="produktlista.css">
+     <link rel="stylesheet" type="text/css" media="screen" href="design.css">
      <script src="main.js"></script>
  </head>
  <body>
      <br><br>
+     <div class="container">
+        <?php include 'header.php' ?>
+    </div>
 
     <?php while ($kat = $productLines->fetch()) {
     ?>

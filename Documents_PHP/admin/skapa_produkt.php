@@ -1,8 +1,8 @@
 <?php 
-include "../include/generic/connect.php";
-include "../include/dbklass.php";
-include "../include/klasser.php";
-include "../include/dbprocess.php";
+include "connect.php";
+include "dbklass.php";
+include "klasser.php";
+//include "dbprocess.php";
 //skapa nytt objekt av Product för att kunna hämta productCode.
 $newProduct = new Product();
 ?>
@@ -14,25 +14,20 @@ $newProduct = new Product();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>The C of CRUD</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="include/css/template.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="../include/css/skapa_produkt.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="template.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="skapa_produkt.css">
 </head>
 <body>
     <?php 
-    
-    include "../include/generic/design.php";
+    include "design.php";
     ?>
-
 <div class="form-wrap">
     <h1>Create new product</h1>
     <!-- send form to dbprocess for query-->
-    <form action="../include/dbprocess.php" method="POST">
+    <form action="dbprocess.php" method="POST">
         <label>Product Code</label><br>
-        <input type="text" name="productCode" readonly value="
-        <?php
-        echo $newProduct->productCode; //echo new productCode som skapades i constructor för new Product
-        ?>
-
+        <input type="text" name="productCode" value="
+        <?php echo $newProduct->productCode;?>
         "><br><br>
         <label>Product Name</label><br>
         <input type="text" name="productName" placeholder="Product name"><br><br>

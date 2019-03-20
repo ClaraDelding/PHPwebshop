@@ -1,7 +1,6 @@
 <?php
 
-include "../include/dbklass.php";
-include "../include/klasser.php";
+include "productLineKlass.php";
 
 //hämta värdet för productLine via url:en. Stoppa in den i arrayen $_GET. Om värde saknas, echo else
 if (isset($_GET['productLine'])) {
@@ -13,7 +12,6 @@ if (isset($_GET['productLine'])) {
 $lines = new ProductLines($_GET['productLine']);
 //Kalla på metoden som listar alla produkter i den specifika produktlinjen
 $productsInLine = $lines->getProductsInLine();
-
 
 ?>
  
@@ -27,8 +25,8 @@ $productsInLine = $lines->getProductsInLine();
  </head>
  <body>
     <?php 
-    include "../include/dbprocess.php";
-    include "../include/generic/design.php";
+    //inkludera header//
+    include "design.php";
     ?>
      <br><br>
      <h2>Choose product to edit</h2>
