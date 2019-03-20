@@ -13,7 +13,7 @@ html {
     
     display:grid;
     grid-template-columns: 2fr 6fr 2fr;
-    /*grid-template-rows: 2fr 1fr 10fr 2fr;
+    grid-template-rows: 2fr 1fr 10fr 2fr;
 
     /* background-color: #2196F3; */
 }
@@ -120,7 +120,6 @@ html {
         display:blocK;
         font-size:1.3em;
         padding-top:5%;
-        padding-left: 5%;
         text-decoration:none;
         color:black;
     }
@@ -134,6 +133,8 @@ html {
         background-color:rgb(180, 148, 148);
 
     }
+
+    
 
     .navItems form {
         height:100%;
@@ -149,18 +150,18 @@ html {
 
 
 /* Aside */
-/* .aside {
+.aside {
     border:1px solid black;
-} */
+}
 
 
 /* Footer */
-/* .footer {
+.footer {
     background-color:rgb(134, 120, 120);
-} */
+}
 
 /* main */
-/* .main {
+.main {
     min-height:100%;
     
 
@@ -193,7 +194,7 @@ html {
                 border:1px solid black;
                 height:30%;
                 margin-top:5%;
-            } */
+            }
 
 
   
