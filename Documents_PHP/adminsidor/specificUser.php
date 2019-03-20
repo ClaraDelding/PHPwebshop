@@ -47,18 +47,6 @@ if(isset($_POST['edit'])) {
 <body>
 <h1> <i>Edit customer</i> </h1>
     
-    <form method="post"> 
-        <?php
-        if(isset($_SESSION['logged_in'])) {
-
-            
-            $user->listCustomers();
-        
-        ?>
-        
-        <?php } else { echo "Du måste logga in först :)"; }  ?>
-    </form>
-    
 
 
 </body>

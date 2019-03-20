@@ -51,23 +51,14 @@ if(isset($_POST['registerAdmin'])) {
 <body>
 
     
-    <form method="post"> 
-        <?php
-        // $user = new User2();
-        // $user->view();
-        ?>
-    </form>
 
     <div class="container">
         <div class="row bg_1">
             <? if(isset($_SESSION['logged_in'])): ?>
-            Välkommen <strong><?php echo $_SESSION['name']?></strong>!<br>
-
-            <?php else: ?>
-
+            
             <form method="post" class="">
 
-                <h1><i> Registrera </i></h1>
+                <h1><i> Skapa ny anställd </i></h1>
 
 
                 <div class="col-3 input-effect">
@@ -161,6 +152,11 @@ if(isset($_POST['registerAdmin'])) {
                     </span>
                 </div>
             </form>
+            <?php else: ?>
+
+           <p> För att skapa en användare behöver du logga in </p><br>
+
+
 
             <?php endif;?>
         </div>

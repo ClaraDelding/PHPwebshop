@@ -45,7 +45,7 @@ if(isset($_POST['change'])) {
 </head>
 <body>
 
-    <h1> <i>Edit Employee</i> </h1>
+    <h1> <i>Mitt Konto</i> </h1>
     
     <form method="post"> 
         <?php

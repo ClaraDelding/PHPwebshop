@@ -1,7 +1,7 @@
 <?php 
 
 // Admin 2.0
-include 'generic/db.php';
+require_once 'generic/db.php';
 
 class Admin  {
 
@@ -32,12 +32,12 @@ class Admin  {
 
 
         if($this->is_logged_in) {
-            $sql2 = "SELECT employeeNumber FROM employees WHERE username = :user";
-            $stmt2 = $this->db->prepare($sql2);
-            $stmt2->execute([':user' => $user]); 
-            $right = $stmt2->fetchColumn();
+            // $sql2 = "SELECT employeeNumber FROM employees WHERE username = :user";
+            // $stmt2 = $this->db->prepare($sql2);
+            // $stmt2->execute([':user' => $user]); 
+            // $right = $stmt2->fetchColumn();
 
-            $_SESSION['userId'] = $right;
+            // $_SESSION['userId'] = $right;
             $_SESSION['logged_in'] = true;
             $_SESSION['user'] = "$user";
 
@@ -170,12 +170,16 @@ class Admin  {
 
     public function listCustomers() {
 
-        $stmt2 = $this->db->prepare("SELECT customerName, contactFirstName, contactLastName, phone, addressLine1, addressLine2, city, state, postalCode, country FROM customers LIMIT 0, 10");
+        $stmt2 = $this->db->prepare("SELECT customerNumber, customerName, contactFirstName, contactLastName, phone, addressLine1, addressLine2, city, state, postalCode, country FROM customers LIMIT 0, 10");
         $stmt2->execute(); 
         $result = $stmt2->fetchAll(PDO::FETCH_ASSOC);     
     
         foreach($result as $col) {
             echo "<div class='itemContainer'>";
+            echo "<input type='submit' name='edit' value='Edit'>";
+            echo "<input type='submit' name='softDelete' value='Delete'>";
+            echo '<a href="specificUser.php?customerNumber=' . $col['customerNumber'] . '> Användaren </a>';
+
             foreach($col as $col => $value) {   
                 echo "<div class='items'> $col <br> <input value='$value' name='$col'></div>";
 
@@ -185,5 +189,36 @@ class Admin  {
 
         }
     }
+     // IDENTISK FINNS I CUSTOMERS     
+     public function editCustomer($corpName, $firstname, $lastname, $phone, $address1, 
+     $address2, $city, $state, $postalcode, $country) {
+         
+        
+        $stmt2 = $this->db->prepare("SELECT customerNumber FROM customers");
+        $stmt2->execute(); 
+        $customerNumber = $stmt2->fetchColumn();
+             
+    
+
+         $stmt = $this->db->prepare("UPDATE customers SET customerName = :customername, contactFirstName = :contactFirstName, contactLastName = :contactLastName, phone = :phone, addressLine1 = :address1, addressLine2= :address2, city = :city, state = :state, postalCode = :postalCode, country = :country WHERE username = :user");
+ 
+         $stmt->bindValue(':customername', $corpName, PDO::PARAM_STR);
+         $stmt->bindValue(':contactLastName', $lastname, PDO::PARAM_STR);
+         $stmt->bindValue(':contactFirstName', $firstname, PDO::PARAM_STR);
+         $stmt->bindValue(':phone', $phone, PDO::PARAM_STR);
+         $stmt->bindValue(':address1', $address1, PDO::PARAM_STR);
+         $stmt->bindValue(':address2', $address2, PDO::PARAM_STR);
+         $stmt->bindValue(':city', $city, PDO::PARAM_STR);
+         $stmt->bindValue(':state', $state, PDO::PARAM_STR);
+         $stmt->bindValue(':postalCode', $postalcode, PDO::PARAM_STR);
+         $stmt->bindValue(':country', $country, PDO::PARAM_STR);
+         $stmt->bindValue(':user', $customerNumber, PDO::PARAM_STR);
+         $stmt->execute(); 
+ 
+         // echo $user;
+ 
+         return true;
+     }
+ 
     
 }

@@ -1,4 +1,4 @@
-<!DOCTYPE <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -34,6 +34,9 @@
         <a href="remove.php"> Delete </a>
         
         <a href="editcustomers.php"> Edit customers </a>
+
+        <a href="myAccount.php"> Mitt konto </a>
+
         
 
 

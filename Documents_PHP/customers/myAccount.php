@@ -4,9 +4,9 @@
 
 session_start();
 
-
-include "../include/includeAdmin.php";
+include "../include/includeCustomers.php";
 include "../include/generic/header.php";
+
 
 if(isset($_POST['change'])) {
   
@@ -20,7 +20,7 @@ if(isset($_POST['change'])) {
     $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_MAGIC_QUOTES);
     $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_MAGIC_QUOTES);
 
-    $user = new Admin(); 
+    $user = new Customers(); 
 
     if ($user->editUser($lastName, $firstName, $extension, $email, $officeCode, 
                         $reportsTo, $jobTitle, $username, $password)) {
@@ -45,14 +45,14 @@ if(isset($_POST['change'])) {
 </head>
 <body>
 
-    <h1> <i>Edit Employee</i> </h1>
+    <h1> <i>Mitt Konto</i> </h1>
     
     <form method="post"> 
         <?php
         if(isset($_SESSION['logged_in'])) {
 
             
-            $user = new Admin();
+            $user = new Customers();
             $user->view();
         
         ?>
@@ -65,5 +65,6 @@ if(isset($_POST['change'])) {
 
 </body>
 </html>
+
 
 

@@ -49,12 +49,13 @@ if(isset($_POST['change'])) {
 </head>
 <body>
     
+    <h1> <i> Mitt konto </i> </h1>
     <form method="post"> 
         <?php
         if(isset($_SESSION['logged_in'])) {
 
             
-            $user = new User2();
+            $user = new Customers();
             $user->view();
         
         ?>

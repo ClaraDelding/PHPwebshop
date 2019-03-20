@@ -5,7 +5,6 @@
 session_start();
 
 include "../include/includeCustomers.php";
-include "../include/generic/header.php";
 
 
 if(isset($_POST['login'])) {
@@ -42,8 +41,11 @@ if(isset($_POST['logout'])) {
 <script src="main.js"></script>
 </head>
 <body>
+    <!-- Innan header -->
+<?php include "../include/generic/header.php"; ?>
 
     <h1><i> Logga in </i></h1>
+
 
     <? if(isset($_SESSION['logged_in'])) { ?>
     Välkommen <strong><?php echo $_SESSION['name']?></strong>!<br>
