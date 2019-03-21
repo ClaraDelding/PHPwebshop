@@ -1,5 +1,11 @@
 <?php
 session_start();
+
+require_once "../includeCustomers/classes/productClass.php";
+
+//skapa objektet att loopa genom nedan
+$lines = new Product();
+$productLines = $lines->getProductLines();
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +26,7 @@ session_start();
        
         
 
-        <aside class="mainChild aside">ASide vänster</aside>
+        <aside class="mainChild aside">Aside vänster</aside>
 
         <main class="mainChild main"> 
             <div class="ngt">
@@ -28,32 +34,14 @@ session_start();
 
                 <div class="itemContainerMain">
 
-
-                    <div class="mainItem" >
-                        <h2> Kategori </h2>
-                    </div>
-                    <div class="mainItem">
-                        <h2> Kategori </h2>
-                    </div>
-                    <div class="mainItem">
-                        <h2> Kategori </h2>
-                    </div>
-                    <div class="mainItem" >
-                        <h2> Kategori </h2>
-                    </div>
-                    <div class="mainItem">
-                        <h2> Kategori </h2>
-                    </div>
-                    <div class="mainItem">
-                        <h2> Kategori </h2>
-                    </div>
-                    <div class="mainItem">
-                        <h2> Kategori </h2>
-                    </div>
-                    <div class="mainItem">
-                        <h2> Kategori </h2>
-                    </div>
-                   
+                <?php while ($kat = $productLines->fetch()) {
+                ?>
+                <div class="mainItem">
+                <a href="produkter.php?productLine=<?php echo $kat['productLine']; ?>"><?php echo $kat['productLine']; ?></a><br>
+                <div>
+                <?php
+                } ?>
+                  
                 </div>
             </div>
 

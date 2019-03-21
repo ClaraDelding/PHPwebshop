@@ -1,7 +1,7 @@
 <?php 
 
 // Admin 2.0
-include '../../genericInclude/classes/db.php';
+include_once '../../genericInclude/classes/db.php';
 
 class Admin  {
 

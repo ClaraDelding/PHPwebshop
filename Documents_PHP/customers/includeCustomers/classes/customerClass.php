@@ -1,7 +1,11 @@
 <?php
 
 // user 2.0
+<<<<<<< HEAD
 include '../../genericInclude/classes/db.php';
+=======
+include_once '../../genericInclude/classes/db.php';
+>>>>>>> origin/ClarasFrånAxelsDevBranch
 class Customers  {
 
     private $db;

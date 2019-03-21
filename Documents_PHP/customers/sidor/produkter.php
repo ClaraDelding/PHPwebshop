@@ -1,5 +1,22 @@
 <?php
 session_start();
+<<<<<<< HEAD
+=======
+
+include_once "../includeCustomers/classes/productLineClass.php";
+include_once "../includeCustomers/classes/productClass.php";
+//hämta värdet för productLine via url:en. Stoppa in den i arrayen $_GET. Om värde saknas, echo else
+if (isset($_GET['productLine'])) {
+    $productLine = filter_input(INPUT_GET, 'productLine', FILTER_SANITIZE_STRING);
+} else {
+    echo "Sorry, there is no such ProductLine";
+}
+//skapa objekt med productLine som argument via $_GET
+$product = new Product;
+//Kalla på metoden som listar alla produkter i den specifika produktlinjen
+$productsInLine = $product->getProductLines();
+
+>>>>>>> origin/ClarasFrånAxelsDevBranch
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,6 +44,7 @@ session_start();
 
                 <div class="itemContainerMain">
 
+<<<<<<< HEAD
 
                     <div class="mainItem" >
                         <a href="enskildprodukt.php"><h2> Produkt </h2></a>
@@ -49,6 +67,16 @@ session_start();
                         <a href="enskildprodukt.php"><h2> Produkt </h2></a>                    </div>
                    
                 </div>
+=======
+                <?php while ($row = $productsInLine->fetch()) {
+                ?>
+                <div class="mainItem">
+                <a href="enskildprodukt.php?product=<?php echo $row['productCode']; ?>"><?php echo $row['productName']; ?></a> -
+                <?php echo $row['productLine']; ?><br>
+                </div>
+                <?php
+                } ?>
+>>>>>>> origin/ClarasFrånAxelsDevBranch
             </div>
 
         </main>
@@ -59,6 +87,7 @@ session_start();
     </div>
 
 
+<<<<<<< HEAD
 
     <!-- <div class="footer-inner">
   <div>One</div>
@@ -67,5 +96,7 @@ session_start();
   <div>Four</div>
 </div> -->
 
+=======
+>>>>>>> origin/ClarasFrånAxelsDevBranch
 </body>
 </html>

@@ -1,3 +1,19 @@
+<?php
+
+include_once "../includeCustomers/classes/productClass.php";
+
+//hämta produktkod via url för att kunna skapa objektet $products nedan
+if (isset($_GET['product'])) {
+    $productCode = filter_input(INPUT_GET, 'product', FILTER_SANITIZE_ENCODED);
+} else {
+    echo "Sorry, there is no such product";
+}
+//instantiera klassen Product med hjälp av värdet från $_GET
+$product = new Product($_GET['product']);
+$product->getProduct();
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,43 +27,37 @@
 <body>
 
     <div class="container">
-
-       <?php include '../includeCustomers/other/header.php' ?>
+        <!--inkludera header -->
+       <?php include_once '../includeCustomers/other/header.php' ?>
        
         
 
-        <aside class="mainChild aside">ASide vänster</aside>
+        <aside class="mainChild aside">Aside vänster</aside>
 
+        <main class="mainChild main">
+            <article>
+            
+                <!--echoa ut värden från valda produkten-->
+                <section class="product-details">
+                        <h2><?php echo $product->productName; ?></h2>
+                        <p><?php echo $product->productDescription; ?></p>
+                        <h3><?php echo $product->MSRP; ?>kr</h3>
+                </section>
 
-        <main class="mainChild main"> 
-            <div class="ngt">
-                <h1> Produkter </h1>
-
-                <div class="itemContainerMain">
-
-
-                    <div class="mainItem" >
-                        <a href="enskildProdukt"><h2> Produkt </h2></a>
-                    </div>
-                  
-                </div>
-            </div>
-
-        </main>
+                <!-- gör länk som leder till redigeringsssida för produkt, skicka med värden från aktuella produkten via echo -->
+                <a href="redigera_produkt.php?product=<?php echo $product->productCode; ?>&productName=<?php echo $product->productName;?>
+                            &productDescription=<?php echo $product->productDescription; ?>&MSRP=<?php echo $product->MSRP; ?>&productVendor=
+                            <?php echo $product->productVendor; ?>">
+                    <!-- gör länken till en knapp -->
+                    <input type="submit" value="Lägg i varukorg" name="lägg till i varukorgen">
+                </a>
+            </article>
+       </main>
 
         <aside class="mainChild aside">aside höger</aside>
 
         <footer class="mainChild footer">Footer</footer>
     </div>
-
-
-
-    <!-- <div class="footer-inner">
-  <div>One</div>
-  <div>Two</div>
-  <div>Three</div>
-  <div>Four</div>
-</div> -->
 
 </body>
 </html>

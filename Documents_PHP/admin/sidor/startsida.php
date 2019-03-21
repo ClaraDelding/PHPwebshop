@@ -32,7 +32,11 @@ require_once "../includeAdmin/classes/adminClass.php";
             <section class="headerSection3 headerSection">
 
                 
+<<<<<<< HEAD
                 <!-- <div class="notLoggedInContainerTrue notLoggedInContainerFalse">
+=======
+                <div class="notLoggedInContainerTrue notLoggedInContainerFalse">
+>>>>>>> origin/ClarasFrånAxelsDevBranch
                     <article class="notLoggedIn">
                         Logga In 
                         <div class="logIn">
@@ -47,7 +51,11 @@ require_once "../includeAdmin/classes/adminClass.php";
                 </div>
                 <div class="loggedInContainerFalse">
                     <a href="#"> Mitt Konto </a>
+<<<<<<< HEAD
                 </div> -->
+=======
+                </div>
+>>>>>>> origin/ClarasFrånAxelsDevBranch
                 <?php 
                             if(isset($_POST['login'])) {
 
@@ -73,7 +81,11 @@ require_once "../includeAdmin/classes/adminClass.php";
                 <? if(isset($_SESSION['logged_in'])) { ?>
                     <a href="kontosida.php"> Mitt Konto </a> 
                      
+<<<<<<< HEAD
                     <form method="post">
+=======
+                     <form method="post">
+>>>>>>> origin/ClarasFrånAxelsDevBranch
                         <input type="submit" value="logga ut" name="logout">
                     </form>
                     <?php } else { ?>
@@ -94,7 +106,11 @@ require_once "../includeAdmin/classes/adminClass.php";
         <nav class="mainChild nav">
             <section class="navSection navSection1">
             </section>
+<<<<<<< HEAD
 <!-- 
+=======
+
+>>>>>>> origin/ClarasFrånAxelsDevBranch
             <section class="navSection navSection2">
                 <div class="navItemsContainer">
                     <article class="navItems navItem1">
@@ -116,7 +132,11 @@ require_once "../includeAdmin/classes/adminClass.php";
                         <a href="#" class="parts part5 aRight"> Kontakta oss </a>
                     </article>            
                 </div>
+<<<<<<< HEAD
             </section> -->
+=======
+            </section>
+>>>>>>> origin/ClarasFrånAxelsDevBranch
 
             <section class="navSection navSection3">
             </section>

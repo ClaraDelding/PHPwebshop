@@ -69,7 +69,11 @@ require_once "../includeCustomers/classes/customerClass.php";
                     <form method="post">
                         <input type="submit" value="logga ut" name="logout">
                     </form>
+<<<<<<< HEAD
                     <?php } else { ?>
+=======
+                    <?php// } else { ?>
+>>>>>>> origin/ClarasFrånAxelsDevBranch
                     <div class="notLoggedIn">
                         <form method="post" class="form">
                             <h2> Logga in </h2>
@@ -79,7 +83,11 @@ require_once "../includeCustomers/classes/customerClass.php";
                         </form>
                         <a href="skapaAcc.php"> Skapa konto </a>
                     </div>
+<<<<<<< HEAD
              <?php } ?>
+=======
+             <?php// } ?>
+>>>>>>> origin/ClarasFrånAxelsDevBranch
 
              
 
