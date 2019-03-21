@@ -5,15 +5,6 @@
 <nav class="navSection">
     <div class="navItemsContainer">
         <article class="navLinks">
-            <a href="skapa_produkt.php" class="item"> Add products </a>
-        </article>
-        <article class="navLinks">
-            <a href="kategorier_lista_admin.php" class="item"> Edit products </a>
-        </article>
-        <article class="navLinks">
-        <a href="edit_customers.php" class="item"> Edit customers </a>
-        </article>
-        <article class="navLinks">
             <a href="#" class="item"> Logga in </a>
         </article>          
         <article class="navLinks">
