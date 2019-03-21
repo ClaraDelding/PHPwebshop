@@ -1,6 +1,6 @@
 <?php
 //include_once "../includeAdmin/classes/dbClass.php";
-include_once "../includeClasses/classes/productClass.php";
+include_once "../includeAdmin/classes/productClass.php";
 include_once '../../genericInclude/classes/db.php';
 
 //----------------------------SKAPA PRODUKT -------------------------------------//

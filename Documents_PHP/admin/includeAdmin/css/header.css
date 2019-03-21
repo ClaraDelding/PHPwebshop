@@ -1,0 +1,44 @@
+html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+
+  body {
+      margin:0;
+  }
+
+    .navSection {
+        width:100%;
+        height:100px;
+        background-color:rgb(82, 77, 77);
+
+    }
+
+        .navSection .navItemsContainer {
+            display:flex;
+            justify-content:space-around;
+            height:100%;
+
+        }
+            .navSection .navItemsContainer .navLinks {
+                background-color:rgb(172, 196, 172);
+                height:40%;
+                width:10%;
+                text-align:center;
+                margin-top:2%;
+
+            }
+            
+                .navSection .navItemsContainer .navLinks a{
+                    text-decoration:none;
+                    color:black;
+                    display:block;
+                    height:100%;
+                    padding-top:5px;
+
+                }
+                    .navSection .navItemsContainer .navLinks a:hover{
+                        background-color:grey;
+                    }
