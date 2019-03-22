@@ -2,10 +2,10 @@
 
 
 class DB {
-    private $host = 'localhost';
-    private $dbName = 'classicmodels';
-    private $user = 'root';
-    private $pass = 'root';
+    private $host = 'my33b.sqlserver.se';
+    private $dbName = '236972-claraaxel';
+    private $user = '236972_la91213';
+    private $pass = 'Axelclara10';
     private $charset = 'utf8mb4';
     public $pdo;
 
