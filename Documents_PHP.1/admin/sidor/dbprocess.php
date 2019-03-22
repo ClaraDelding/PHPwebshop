@@ -47,7 +47,7 @@ if (isset($_POST['update'])) {
     //OBS nedanstående kod funkar, men är ej objektorienterad
      $db = new DB;
      $pdo = $db->pdo;
-     $sql = "UPDATE classicmodels.products SET productName ='$productName', productDescription = '$description', 
+     $sql = "UPDATE products SET productName ='$productName', productDescription = '$description', 
      MSRP = '$price', productVendor ='$productVendor' WHERE productCode = '$productCode'";
      $stmt = $pdo->prepare($sql); // prepare the pdo
 

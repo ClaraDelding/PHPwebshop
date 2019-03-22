@@ -40,7 +40,7 @@ class Admin  {
         $jobTitle, $username, $password, $admin) {
 
         // Se om användarnamnet redan finns
-        $stmt3 = $this->db->prepare("SELECT * FROM 236972-claraaxel.employees WHERE username = :checkUser");
+        $stmt3 = $this->db->prepare("SELECT * FROM employees WHERE username = :checkUser");
         $stmt3->execute([':checkUser' => $username]);
         $checkUsername = $stmt3->fetchColumn();
         if ($checkUsername) {
@@ -56,7 +56,7 @@ class Admin  {
             // hasha lösenordet- 
             $hash = password_hash($password, PASSWORD_DEFAULT);
             
-            $stmt = $this->db->prepare("INSERT INTO 236972-claraaxel.employees (employeeNumber, lastName, firstName, extension, email, officeCode, reportsTo, jobTitle, username, password, admin) 
+            $stmt = $this->db->prepare("INSERT INTO employees (employeeNumber, lastName, firstName, extension, email, officeCode, reportsTo, jobTitle, username, password, admin) 
             VALUES(:employeeNumber, :lastName, :firstName, :extension, :email, :officeCode, :reportsTo, :jobTitle,:username, :password, :admin)");
     
             $stmt->bindValue(':employeeNumber', $result, PDO::PARAM_INT);
@@ -218,7 +218,7 @@ class Admin  {
     $addressLine2, $city, $state, $postalCode, $country, $username, $password) {
 
     // Se om användaren redan finns
-    $stmt3 = $this->db->prepare("SELECT * FROM 236972-claraaxel.customers WHERE username = :checkUser");
+    $stmt3 = $this->db->prepare("SELECT * FROM customers WHERE username = :checkUser");
     $stmt3->execute([':checkUser' => $username]);
     $checkUsername = $stmt3->fetchColumn();
     if ($checkUsername) {
@@ -235,7 +235,7 @@ class Admin  {
         $hash = password_hash($password, PASSWORD_DEFAULT);
         
 
-        $stmt = $this->db->prepare("INSERT INTO 236972-claraaxel.customers (
+        $stmt = $this->db->prepare("INSERT INTO customers (
         customerNumber, customerName, contactLastName, contactFirstName, phone, addressLine1, addressLine2,
         city, state, postalCode, country, username, password) 
         VALUES(:customerNumber, :customerName, :contactLastName, :contactFirstName, :phone, :addressLine1, 
@@ -269,7 +269,7 @@ class Admin  {
         $jobTitle, $username, $password, $admin) {
 
         // Se om användaren redan finns
-        $stmt3 = $this->db->prepare("SELECT * FROM 236972-claraaxel.employees WHERE username = :checkUser");
+        $stmt3 = $this->db->prepare("SELECT * FROM employees WHERE username = :checkUser");
         $stmt3->execute([':checkUser' => $username]);
         $checkUsername = $stmt3->fetchColumn();
         if ($checkUsername) {
@@ -285,7 +285,7 @@ class Admin  {
             // hasha lösenordet- 
             $hash = password_hash($password, PASSWORD_DEFAULT);
             
-            $stmt = $this->db->prepare("INSERT INTO 236972-claraaxel.employees (employeeNumber, lastName, firstName, extension, email, officeCode, reportsTo, jobTitle, username, password, admin) 
+            $stmt = $this->db->prepare("INSERT INTO employees (employeeNumber, lastName, firstName, extension, email, officeCode, reportsTo, jobTitle, username, password, admin) 
             VALUES(:employeeNumber, :lastName, :firstName, :extension, :email, :officeCode, :reportsTo, :jobTitle,:username, :password, :admin)");
             // :reportsTo
     

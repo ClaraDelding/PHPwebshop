@@ -15,7 +15,7 @@ class Product {
     public $MSRP;
     public $pdo;
  
-    //i konstruktor, om ingen produktkod anges, skapa produktkod genom att hämta högsta värdet från classicModels och sedan +1
+    //i konstruktor, om ingen produktkod anges, skapa produktkod genom att hämta högsta värdet från db och sedan +1
     function __construct($productCode = ""){
         $db = new DB;
         $this->pdo = $db->pdo;
@@ -47,7 +47,7 @@ class Product {
         $this->MSRP = $MSRP; 
         $this->productCode = $productCode;
 
-        $stmt = $this->pdo->prepare("INSERT INTO 236972-claraaxel.products (productCode, productName, productLine, productScale, productVendor,
+        $stmt = $this->pdo->prepare("INSERT INTO products (productCode, productName, productLine, productScale, productVendor,
          productDescription, quantityInStock, buyPrice, MSRP) 
         VALUES(:productCode, :productName, :productLine, :productScale, :productVendor, :productDescription, :quantityInStock, :buyPrice, :MSRP)");
         
@@ -77,7 +77,7 @@ class Product {
     public function getProduct() {
 
 
-        $sql = "SELECT * FROM 236972-claraaxel.products WHERE productCode = '$this->productCode'";
+        $sql = "SELECT * FROM products WHERE productCode = '$this->productCode'";
 
         $getProduct = $this->pdo->prepare($sql); 
         $getProduct->execute();
@@ -128,7 +128,7 @@ class Product {
     
     public function getProductLines() {
 
-        $sql = "SELECT productLine FROM 236972-claraaxel.productlines";
+        $sql = "SELECT productLine FROM productlines";
 
         $getProductLines = $this->pdo->prepare($sql);
         $getProductLines->execute();
