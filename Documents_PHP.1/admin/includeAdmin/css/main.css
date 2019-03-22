@@ -1,0 +1,72 @@
+body { 
+    background-color:rgb(187, 176, 176);
+}
+.logoImg {
+    width:10%;
+    margin:auto;
+}
+.logoImg img {
+    width:100%;
+
+}
+
+
+.logInContainer {
+    width:35%;
+    margin:auto;
+    text-align:center;
+}
+
+.logInContainer input {
+    width:30%;
+    height:3%;
+}
+.logInContainer input[type="text"], input[type="password"] {
+    width:100%;
+    margin:auto;
+    height:4%;
+}
+
+.container .main .row {
+    width:35%;
+    margin:auto;
+    text-align:centeR;
+}
+body .container .edit .row {
+    text-align:center;
+    width:20%;
+} 
+
+body .container .edit .row .editor {
+    text-align:left;
+    width:70%;
+    margin:auto;
+} 
+.container .main .row .col-3{
+        width:100%;
+        margin:auto;        
+    }
+        .container .main .row input[type="text"], input[type="password"]{
+            width:100%;
+            padding-left:3%;
+            height:30px;
+            margin-top:5px;
+            
+        }
+        .container .main .row input[type="submit"]{
+            width:50%;
+            height:30px;
+            margin-top:5px;
+        }
+        .container .main .row select{
+            width:50%;
+            height:30px;
+            margin-top:5px;
+        }
+
+
+/* .container .main .row form {
+    width:40%;
+    background-color:red;
+    margin:auto;
+} */
