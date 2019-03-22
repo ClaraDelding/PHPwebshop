@@ -1,5 +1,22 @@
-YEAY we have strated!
 
+OBS!!!
 
+Länk till sida:
+http://phpclaraaxel.loboessence.se/admin/sidor/skapaAccAdmin.php
 
-https://docs.google.com/document/d/1b1o45CSKtfvNzTH5_71pdoiEa5hZRbvFoh_EisGYa_c/edit?ts=5c6ab175
+Inlogg för Admin:
+username: test
+password: test
+
+För att komma tillbaka till navigationssidan, tryck på Loggan. 
+
+EJ Aktiva sidor:
+Admin:
+  - edit customers.
+  - edit.
+  - orders. 
+Customers ( OBS!! För att komma åt produkt, tryck på start, välj kategori, sedan välj produkt) :
+  - Om oss.
+  - Kontakta oss.
+  - Varukorg. 
+
